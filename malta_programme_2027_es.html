@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa Malta 2027 · Colours of Malta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:        #1A5A9A;
+  --blue-dark:   #0D3D7A;
+  --ink:         #1C1C1E;
+  --ink2:        #211C14;
+  --ink3:        #1A1510;
+  --limestone:   #F2EDE3;
+  --parchment:   #EDE5D4;
+  --warm-white:  #FDFAF6;
+  --stone:       #8B7D6B;
+  --stone-light: #C4B8A8;
+  --terra:       #C4622D;
+  --gold:        #C49A1A;
+  --green:       #16A34A;
+  --border:      rgba(139,125,107,0.2);
+  --shadow:      rgba(28,20,16,0.07);
+  --shadow-md:   rgba(28,20,16,0.13);
+  --display:     'Cormorant Garamond', Georgia, serif;
+  --body:        'DM Sans', system-ui, sans-serif;
+  --nav-h:       66px;
+  --strip-h:     8px;
+  --day-h:       46px;
+  --sticky-top:  calc(var(--nav-h) + var(--strip-h));
+  --radius:      10px;
+  --radius-lg:   14px;
+  --max-w:       1100px;
+  --spectrum: linear-gradient(90deg,
+    #1A5A9A 0%,#2E86AB 10%,#5BB8D4 20%,#A8D8E8 28%,
+    #C4E0B8 36%,#D4C98A 44%,#C49A1A 52%,#C4622D 60%,
+    #E8856A 68%,#D4A0B0 76%,#B08DC4 86%,#1A5A9A 100%);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--limestone);color:var(--ink);overflow-x:hidden;}
+.page-tab{display:none;}.page-tab.active{display:block;}
+
+/* TOPNAV */
+.topnav{position:sticky;top:0;z-index:200;height:var(--nav-h);background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px;}
+.nav-left{display:flex;align-items:center;gap:16px;}
+.com-wordmark{font-family:var(--display);font-size:17px;font-weight:300;color:#fff;letter-spacing:0.03em;}
+.com-wordmark strong{font-weight:600;}
+.com-tagline{font-size:9px;font-weight:400;letter-spacing:1.8px;text-transform:uppercase;color:var(--stone-light);margin-top:1px;}
+.nav-sep{width:1px;height:28px;background:rgba(255,255,255,0.15);}
+.agency-label{font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone-light);}
+.agency-name{font-size:13px;font-weight:500;color:#fff;margin-top:1px;}
+.nav-tabs{display:flex;gap:4px;}
+.nav-tab{background:none;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.7);font-family:var(--body);font-size:11px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;padding:7px 18px;border-radius:20px;cursor:pointer;transition:all .2s;}
+.nav-tab:hover{background:rgba(255,255,255,0.08);color:#fff;}
+.nav-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+
+/* SPECTRUM */
+.spectrum-strip{position:sticky;top:var(--nav-h);z-index:199;height:var(--strip-h);background:var(--spectrum);}
+
+/* HERO */
+.hero{position:relative;height:90vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,14,8,0.82) 0%,rgba(20,14,8,0.28) 55%,transparent 100%);}
+.hero-content{position:relative;z-index:2;padding:56px 48px;max-width:var(--max-w);margin:0 auto;width:100%;}
+.hero-badge{display:inline-block;background:var(--blue);color:#fff;font-size:10px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:20px;}
+.hero-title{font-family:var(--display);font-size:clamp(36px,5vw,64px);font-weight:300;color:#fff;line-height:1.12;margin-bottom:32px;}
+.hero-title strong{color:var(--gold);}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
+.hstat{display:flex;flex-direction:column;gap:2px;}
+.hstat-n{font-family:var(--display);font-size:28px;font-weight:500;color:#fff;}
+.hstat-l{font-size:9px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+
+/* DESTINATION */
+.dest-section{background:var(--warm-white);padding:72px 48px;}
+.dest-top{display:grid;grid-template-columns:1fr 380px;gap:56px;max-width:var(--max-w);margin:0 auto;align-items:start;}
+.dest-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.dest-title{font-family:var(--display);font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:20px;}
+.dest-title em{color:var(--terra);font-style:italic;}
+.dest-body{font-size:14px;line-height:1.75;color:#4A3C2E;margin-bottom:24px;}
+.dest-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.dest-tag{background:var(--limestone);border:0.5px solid var(--border);color:var(--stone);font-size:10px;font-weight:500;padding:5px 12px;border-radius:20px;}
+.dest-right img{width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg);display:block;}
+
+/* FACTS */
+.facts-section{background:var(--ink2);padding:64px 48px 0;}
+.facts-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;max-width:var(--max-w);margin:0 auto;padding-bottom:48px;}
+.facts-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.facts-heading{font-family:var(--display);font-size:clamp(26px,3vw,40px);font-weight:400;color:#fff;line-height:1.2;margin-bottom:16px;}
+.facts-heading em{color:var(--gold);font-style:italic;}
+.facts-sub{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);}
+.facts-right{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.facts-col-label{font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:12px;}
+.lbl-clim{color:var(--gold);}
+.lbl-fact{color:var(--stone-light);}
+.clim-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+.clim-key{font-size:11px;color:rgba(255,255,255,0.55);}
+.clim-right{text-align:right;}
+.clim-val{font-size:13px;font-weight:600;color:#fff;margin-right:4px;}
+.clim-note{font-size:10px;color:rgba(255,255,255,0.4);}
+.fact-row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+.fact-key{font-size:11px;color:rgba(255,255,255,0.55);}
+.fact-val{font-size:11px;color:#fff;font-weight:500;text-align:right;}
+.malta-strip{border-top:0.5px solid rgba(255,255,255,0.08);padding:28px 0;}
+.malta-strip-inner{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;max-width:var(--max-w);margin:0 auto;}
+.ms-item{text-align:center;}
+.ms-key{font-size:8.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--stone-light);margin-bottom:4px;}
+.ms-val{font-size:14px;font-weight:600;color:#fff;}
+.ms-sub{font-size:9px;color:rgba(255,255,255,0.4);margin-top:2px;}
+
+/* OVERVIEW */
+.overview-section{background:var(--warm-white);padding:64px 48px;}
+.overview-inner{max-width:var(--max-w);margin:0 auto;}
+.section-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.section-title{font-family:var(--display);font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--ink);margin-bottom:32px;}
+.ov-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.ov{width:100%;border-collapse:collapse;min-width:700px;}
+table.ov thead th{padding:10px 14px;background:var(--ink);color:#fff;font-size:10px;font-weight:500;text-align:left;white-space:nowrap;}
+table.ov thead th .dh-num{display:block;font-family:var(--display);font-size:22px;font-weight:300;color:var(--gold);}
+table.ov thead th .dh-date{display:block;font-size:9px;font-weight:400;letter-spacing:0.5px;color:rgba(255,255,255,0.5);margin-top:2px;}
+table.ov thead th .dh-name{display:block;font-size:11px;font-weight:600;color:#fff;margin-top:2px;}
+table.ov tbody td{padding:8px 10px;vertical-align:top;border-bottom:0.5px solid var(--border);}
+.slot-label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--stone);white-space:nowrap;background:var(--limestone)!important;}
+.cell-stack{display:flex;flex-direction:column;gap:4px;}
+.ov-cell{display:block;padding:7px 10px;border-radius:6px;text-decoration:none;transition:opacity .15s;}
+.ov-cell:hover{opacity:.85;}
+.ov-cell-type{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:0.7;margin-bottom:2px;}
+.ov-cell-name{font-size:11px;font-weight:600;color:var(--ink);line-height:1.3;}
+.ov-cell-note{font-size:10px;opacity:0.65;margin-top:1px;}
+.ov-act{background:#DBEAFE;}.ov-act .ov-cell-type{color:var(--blue);}
+.ov-rest{background:#FEE2D5;}.ov-rest .ov-cell-type{color:var(--terra);}
+.ov-trf{background:#F0ECE6;}.ov-trf .ov-cell-type{color:var(--stone);}
+.ov-exp{background:#FEF3C7;}.ov-exp .ov-cell-type{color:#92700A;}
+.ov-meet{background:#D1FAE5;}.ov-meet .ov-cell-type{color:var(--green);}
+.ov-empty{color:var(--stone);font-size:11px;padding:7px 10px;font-style:italic;opacity:0.5;}
+
+/* DAY STRIP */
+.day-strip{position:sticky;top:calc(var(--nav-h) + var(--strip-h));z-index:150;background:var(--parchment);border-bottom:0.5px solid var(--border);display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;height:var(--day-h);}
+.day-link{display:flex;align-items:center;padding:0 22px;font-size:11px;font-weight:500;letter-spacing:0.5px;color:var(--stone);text-decoration:none;white-space:nowrap;border-right:0.5px solid var(--border);transition:all .15s;}
+.day-link:hover{background:var(--limestone);color:var(--ink);}
+.day-link.active{background:var(--blue);color:#fff;}
+
+/* PAGE & DAY SECTIONS */
+.page{max-width:var(--max-w);margin:0 auto;padding:40px 24px 80px;}
+.day-section{padding-top:24px;}
+.day-divider{margin:48px 0;}.day-divider hr{border:none;border-top:0.5px solid var(--border);}
+.card-stack{display:flex;flex-direction:column;gap:24px;margin-top:24px;}
+
+/* DAY BANNER */
+.day-banner{background:var(--warm-white);border-radius:var(--radius-lg);border:0.5px solid var(--border);overflow:hidden;margin-bottom:4px;}
+.day-banner-top{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;cursor:pointer;transition:background .15s;}
+.day-banner-top:hover{background:var(--limestone);}
+.dbt-left{display:flex;align-items:center;gap:14px;}
+.day-num-box{width:38px;height:38px;background:var(--blue);color:#fff;font-family:var(--display);font-size:20px;font-weight:300;display:flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0;}
+.day-title{font-family:var(--display);font-size:18px;font-weight:400;color:var(--ink);}
+.day-title em{color:var(--terra);font-style:italic;}
+.day-meta{font-size:11px;color:var(--stone);margin-top:2px;}
+.dbt-toggle svg{width:20px;height:20px;stroke:var(--stone);transition:transform .25s;}
+.day-banner.open .dbt-toggle svg{transform:rotate(180deg);}
+.day-schedule{display:none;grid-template-columns:repeat(4,1fr);gap:0;border-top:0.5px solid var(--border);}
+.day-banner.open .day-schedule{display:grid;}
+.sched-item{padding:14px 18px;border-right:0.5px solid var(--border);}
+.sched-item:last-child{border-right:none;}
+.si-time{font-size:10px;font-weight:600;letter-spacing:0.8px;color:var(--stone);margin-bottom:4px;}
+.si-type{font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:10px;display:inline-block;margin-bottom:4px;}
+.si-type.trf{background:#F0ECE6;color:var(--stone);}
+.si-type.act{background:#DBEAFE;color:var(--blue);}
+.si-type.rest{background:#FEE2D5;color:var(--terra);}
+.si-type.exp{background:#FEF3C7;color:#92700A;}
+.si-type.meet{background:#D1FAE5;color:var(--green);}
+.si-name{font-size:12px;font-weight:600;color:var(--ink);line-height:1.35;}
+.si-note{font-size:10px;color:var(--stone);margin-top:2px;}
+
+/* CARD */
+.card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 2px 12px var(--shadow);border:0.5px solid var(--border);}
+.card-img{position:relative;height:420px;overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,12,6,0.75) 0%,transparent 55%);}
+.img-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;}
+.ov-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+.ov-badge.activity{background:rgba(26,90,154,0.9);color:#fff;}
+.ov-badge.restaurant{background:rgba(196,98,45,0.9);color:#fff;}
+.ov-badge.transfer{background:rgba(139,125,107,0.9);color:#fff;}
+.ov-badge.experience{background:rgba(196,154,26,0.9);color:#fff;}
+.ov-badge.gala{background:rgba(80,40,120,0.9);color:#fff;}
+.ov-badge.meeting{background:rgba(22,163,74,0.9);color:#fff;}
+.ov-badge.option{background:rgba(139,125,107,0.7);color:#fff;}
+.img-title{font-family:var(--display);font-size:clamp(22px,2.8vw,34px);font-weight:400;color:#fff;line-height:1.2;margin-bottom:6px;}
+.img-meta{font-size:12px;color:rgba(255,255,255,0.72);}
+.card-body{padding:20px 28px 16px;}
+.atm-line{font-family:var(--display);font-size:16px;font-style:italic;color:var(--stone);line-height:1.5;margin-bottom:12px;}
+.incl-line{font-size:11px;color:var(--stone);margin-bottom:16px;line-height:1.6;}
+.incl-sep{margin:0 8px;opacity:0.4;}
+.expand-btn{display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--border);color:var(--blue);font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;padding:8px 18px;border-radius:20px;cursor:pointer;transition:all .2s;}
+.expand-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.expand-btn svg{width:16px;height:16px;transition:transform .25s;}
+.expand-btn.open svg{transform:rotate(180deg);}
+
+/* EXPANDED */
+.expanded{display:none;border-top:0.5px solid var(--border);}
+.expanded.open{display:block;}
+
+/* PHOTO GRID B */
+.photo-grid-b{display:grid;grid-template-columns:2fr 1fr;gap:4px;height:500px;overflow:hidden;}
+.pgb-main,.pgb-s{position:relative;overflow:hidden;cursor:pointer;}
+.pgb-stack{display:grid;grid-template-rows:1fr 1fr;gap:4px;}
+.pgb-main img,.pgb-s img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;}
+.pgb-main:hover img,.pgb-s:hover img{transform:scale(1.04);}
+.photo-hover-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .2s;display:flex;align-items:center;justify-content:center;}
+.pgb-main:hover .photo-hover-overlay,.pgb-s:hover .photo-hover-overlay{background:rgba(0,0,0,0.25);}
+.ph-zoom{font-size:22px;opacity:0;transition:opacity .2s;}
+.pgb-main:hover .ph-zoom,.pgb-s:hover .ph-zoom{opacity:1;}
+.photo-cap{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.55));font-size:10px;color:rgba(255,255,255,0.85);}
+.photo-count-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.55);color:#fff;font-size:9px;font-weight:600;padding:3px 8px;border-radius:10px;}
+
+/* EXP CONTENT */
+.exp-content{padding:28px;}
+.exp-label{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;margin-top:20px;}
+.exp-label:first-child{margin-top:0;}
+.exp-narrative{font-size:13px;line-height:1.75;color:#4A3C2E;margin-bottom:6px;}
+.exp-divider{height:0.5px;background:var(--border);margin:20px 0;}
+.fact-list{display:flex;flex-direction:column;gap:8px;margin-bottom:4px;}
+.efact{display:grid;grid-template-columns:22px 140px 1fr;gap:6px;align-items:baseline;padding:6px 0;border-bottom:0.5px solid var(--border);}
+.efi{font-size:13px;}
+.efk{font-size:11px;font-weight:600;color:var(--stone);}
+.efv{font-size:12px;color:var(--ink);}
+.incl-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin-bottom:4px;}
+.incl-item{display:flex;align-items:baseline;gap:7px;font-size:12px;color:var(--ink);}
+.tick{color:var(--green);font-weight:700;}
+.cross{color:var(--stone-light);font-weight:700;}
+.ent-badge{display:inline-block;background:var(--parchment);border:0.5px solid var(--border);font-size:10px;font-weight:600;color:var(--stone);padding:3px 10px;border-radius:10px;margin-bottom:8px;}
+.options-note{font-size:12px;color:#5C4A38;background:var(--parchment);border-radius:8px;padding:10px 14px;border-left:3px solid var(--gold);}
+
+/* OPTION CARD */
+.option-tabs{display:grid;border-bottom:0.5px solid var(--border);}
+.option-tab{background:var(--limestone);border:none;padding:16px 20px;text-align:left;cursor:pointer;transition:background .15s;border-right:0.5px solid var(--border);}
+.option-tab:last-child{border-right:none;}
+.option-tab.active{background:#fff;}
+.opt-tag{display:block;font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--stone);margin-bottom:4px;}
+.opt-name{display:block;font-family:var(--display);font-size:16px;font-weight:500;color:var(--ink);}
+.opt-sub{display:block;font-size:10px;color:var(--stone);margin-top:3px;}
+.option-pane{display:none;}.option-pane.active{display:block;}
+
+/* DEPARTURE */
+.dep-section{background:var(--ink);padding:64px 48px;text-align:center;}
+.dep-inner{max-width:600px;margin:0 auto;}
+.dep-icon{font-size:36px;margin-bottom:16px;}
+.dep-title{font-family:var(--display);font-size:32px;font-weight:300;color:#fff;margin-bottom:12px;}
+.dep-body{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.65);margin-bottom:24px;}
+.dep-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.dep-chip{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);font-size:11px;font-weight:500;padding:6px 16px;border-radius:20px;}
+
+/* CONTACT */
+.contact-section{background:var(--limestone);padding:64px 48px;}
+.contact-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start;}
+.contact-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.contact-title{font-family:var(--display);font-size:clamp(24px,3vw,38px);font-weight:400;color:var(--ink);margin-bottom:10px;}
+.contact-sub{font-size:13px;line-height:1.7;color:#5C4A38;}
+.profile-card{display:flex;gap:24px;align-items:flex-start;background:#fff;border-radius:var(--radius-lg);padding:24px;border:0.5px solid var(--border);min-width:320px;}
+.profile-photo{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--parchment);}
+.profile-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.profile-name{font-family:var(--display);font-size:20px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.profile-role{font-size:11px;color:var(--stone);margin-bottom:10px;}
+.profile-sep{height:0.5px;background:var(--border);margin-bottom:12px;}
+.contact-links{display:flex;flex-direction:column;gap:8px;}
+.contact-link{display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:8px;text-decoration:none;transition:opacity .15s;}
+.contact-link:hover{opacity:.85;}
+.contact-link.wa{background:#25D366;color:#fff;}
+.contact-link.em{background:var(--limestone);color:var(--ink);border:0.5px solid var(--border);}
+.contact-link svg{width:16px;height:16px;flex-shrink:0;}
+.cl-label{display:block;font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;opacity:0.75;}
+.cl-val{display:block;font-size:12px;font-weight:600;}
+
+/* FOOTER */
+.footer{background:var(--ink3);padding:24px 48px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;}
+.footer-wordmark{font-family:var(--display);font-size:18px;font-weight:300;color:rgba(255,255,255,0.6);letter-spacing:0.05em;}
+.footer-meta{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;flex-direction:column;gap:12px;}
+.lightbox.open{display:flex;}
+.lb-img-wrap{position:relative;max-width:90vw;max-height:80vh;}
+.lb-img-wrap img{max-width:90vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px;}
+.lb-close{position:absolute;top:-14px;right:-14px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:16px;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lb-caption{color:rgba(255,255,255,0.65);font-size:12px;max-width:600px;text-align:center;}
+.lb-nav-row{display:flex;align-items:center;gap:20px;}
+.lb-btn{background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.25);color:#fff;font-size:12px;font-weight:500;padding:7px 18px;border-radius:20px;cursor:pointer;transition:background .15s;}
+.lb-btn:hover{background:rgba(255,255,255,0.22);}
+.lb-counter{color:rgba(255,255,255,0.5);font-size:11px;min-width:40px;text-align:center;}
+
+/* HOTEL TAB */
+.hotel-page{background:var(--warm-white);min-height:100vh;padding:64px 48px;}
+.hotel-page-inner{max-width:var(--max-w);margin:0 auto;}
+.hotel-pg-title{font-family:var(--display);font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--ink);margin-bottom:8px;}
+.hotel-pg-sub{font-size:14px;color:var(--stone);margin-bottom:40px;line-height:1.6;}
+.comp-wrap{overflow-x:auto;margin-bottom:56px;}
+table.comp{width:100%;border-collapse:collapse;min-width:680px;}
+table.comp th{background:var(--ink);color:#fff;font-size:11px;font-weight:500;padding:12px 18px;text-align:left;}
+table.comp td{padding:10px 18px;border-bottom:0.5px solid var(--border);font-size:12px;vertical-align:top;}
+.comp-row-label{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--stone);background:var(--limestone)!important;white-space:nowrap;}
+.comp-val{font-size:12px;color:var(--ink);}
+.comp-rate{font-size:15px;font-weight:700;color:var(--blue);}
+.comp-note{font-size:10px;color:var(--stone);margin-top:2px;}
+.best-val{background:#EFF6FF!important;}
+.best-badge{display:inline-block;background:var(--blue);color:#fff;font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:4px;}
+.top-badge{display:inline-block;background:var(--gold);color:var(--ink);font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:4px;}
+.hotel-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:40px;}
+.h-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;border:0.5px solid var(--border);box-shadow:0 2px 12px var(--shadow);}
+.h-card-img{position:relative;height:220px;overflow:hidden;}
+.h-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.h-card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.4),transparent);}
+.h-card-stars{position:absolute;bottom:12px;left:16px;font-size:14px;color:var(--warm-white);}
+.h-card-body{padding:20px 22px;}
+.h-card-name{font-family:var(--display);font-size:22px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.h-card-loc{font-size:11px;color:var(--stone);margin-bottom:8px;}
+.h-card-desc{font-size:12px;line-height:1.65;color:#5C4A38;margin-bottom:16px;}
+.h-card-rates{border-top:0.5px solid var(--border);padding-top:14px;margin-bottom:14px;}
+.h-rate-row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:0.5px solid var(--border);}
+.h-rate-row:last-child{border-bottom:none;}
+.h-rate-label{font-size:11px;font-weight:600;color:var(--ink);}
+.h-rate-note{font-size:10px;color:var(--stone);margin-top:1px;}
+.h-rate-val{font-size:14px;font-weight:700;color:var(--blue);}
+.h-card-incl{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;}
+.h-incl-item{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--ink);}
+.h-card-disclaimer{border-top:0.5px solid var(--border);padding-top:10px;}
+.h-disc-text{font-size:10px;color:var(--stone);line-height:1.5;font-style:italic;}
+
+/* ADVICE BOX */
+.advice-box{background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:32px;}
+.advice-box-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#92700A;margin-bottom:6px;}
+.advice-box-text{font-size:13px;line-height:1.65;color:#78500A;}
+
+@media(max-width:768px){
+  .dest-top,.facts-inner,.contact-inner{grid-template-columns:1fr;}
+  .dest-right img{height:220px;}
+  .hotel-cards-grid{grid-template-columns:1fr;}
+  .malta-strip-inner{grid-template-columns:repeat(3,1fr);}
+  .facts-right{grid-template-columns:1fr;}
+  .hero-content{padding:32px 24px;}
+  .dest-section,.facts-section,.overview-section,.hotel-page,.contact-section,.dep-section{padding:40px 24px;}
+  .page{padding:24px 16px 60px;}
+}
+
+/* OVERVIEW EXPAND */
+.ov-coach{position:relative;user-select:none;display:flex;align-items:flex-start;gap:6px;cursor:pointer;}
+.ov-coach-text{flex:1;min-width:0;}
+.ov-coach-toggle{flex-shrink:0;width:18px;height:18px;border-radius:4px;background:rgba(26,90,154,0.15);border:none;cursor:pointer;font-size:10px;line-height:18px;text-align:center;color:var(--blue);transition:background .15s,transform .2s;padding:0;margin-top:1px;}
+.ov-coach-toggle:hover{background:rgba(26,90,154,0.28);}
+.ov-coach.ov-open .ov-coach-toggle{transform:rotate(180deg);}
+.ov-sub-list{display:none;margin-top:4px;display:none;flex-direction:column;gap:3px;}
+.ov-sub-list.ov-visible{display:flex;}
+.ov-sub-item{display:block;padding:5px 8px;border-radius:5px;background:#EFF6FF;text-decoration:none;transition:opacity .15s;}
+.ov-sub-item:hover{opacity:.8;}
+.ov-sub-item .ov-cell-type{font-size:7.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);opacity:.8;margin-bottom:1px;}
+.ov-sub-item .ov-cell-name{font-size:10.5px;font-weight:600;color:var(--ink);line-height:1.3;}
+.ov-opt-item{background:#FEF9EC;}
+.ov-opt-item .ov-cell-type{color:#92700A;}
+.ov-trf-item{background:#F0ECE6;}
+.ov-trf-item .ov-cell-type{color:var(--stone);}
+
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-left">
+    <div>
+      <div class="com-wordmark">colours of <strong>malta</strong></div>
+      <div class="com-tagline">travel &amp; incentives</div>
+    </div>
+    <div class="nav-sep"></div>
+    <div>
+      <div class="agency-label">Presentado a</div>
+      <div class="agency-name">Francesca</div>
+    </div>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('prog')">Programa</button>
+    <button class="nav-tab" onclick="showTab('hotels')">Hoteles</button>
+  </div>
+</nav>
+<div class="spectrum-strip"></div>
+
+<!-- PROGRAMME TAB -->
+<div id="tab-prog" class="page-tab active">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/introduction to malta.jpg" alt="Malte" onerror="this.style.display='none'">
+  </div>
+  <div class="hero-content">
+    <span class="hero-badge">Colours of Malta DMC &nbsp;·&nbsp; 31 marzo – 5 abril 2027</span>
+    <h1 class="hero-title">Programa Cultural<br><strong>Malta — La Isla de los Caballeros</strong></h1>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-n">31.03.2027</span><span class="hstat-l">Llegada</span></div>
+      <div class="hstat"><span class="hstat-n">25–30</span><span class="hstat-l">Participantes</span></div>
+      <div class="hstat"><span class="hstat-n">5</span><span class="hstat-l">Noches</span></div>
+      <div class="hstat"><span class="hstat-n">6</span><span class="hstat-l">Días</span></div>
+      <div class="hstat"><span class="hstat-n">Marzo-Abril 2027</span><span class="hstat-l">Fechas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATION -->
+<section class="dest-section">
+  <div class="dest-top">
+    <div class="dest-left">
+      <div class="dest-overline">El Destino</div>
+      <h2 class="dest-title">Malta — <em>tres islas, tres mil años</em> de historia</h2>
+      <p class="dest-body">Situada en el corazón del Mediterráneo, Malta es una joya insular donde cada piedra cuenta una historia. Desde los templos megalíticos de 5.500 años de antigüedad hasta los palacios barrocos construidos por los Caballeros de San Juan, la isla ofrece una concentración de patrimonio sin igual en Europa.</p>
+      <p class="dest-body">La Valeta, capital del Patrimonio Mundial de la UNESCO, es una de las capitales más pequeñas de la Unión Europea, pero también una de las más ricas en monumentos. Mdina, la antigua capital medieval conocida como "La Ciudad Silenciosa", las Tres Ciudades de la Caballería, las catedrales barrocas y los museos de renombre internacional la convierten en un destino ideal para los amantes de la historia y la cultura.</p>
+      <div class="dest-tags">
+        <span class="dest-tag">🏛️ UNESCO — La Valeta</span>
+        <span class="dest-tag">✈️ 3h desde España</span>
+        <span class="dest-tag">🇪🇺 Unión Europea</span>
+        <span class="dest-tag">💶 Euro</span>
+        <span class="dest-tag">🗣️ Inglés · Maltés</span>
+        <span class="dest-tag">☀️ Primavera ideal</span>
+      </div>
+    </div>
+    <div class="dest-right">
+      <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/INTRODUCTION%20TO%20MALTA%202ND%20PICTURE%20(WITH%20INFORMATION).jpg" alt="Malte" onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<!-- FACTS -->
+<section class="facts-section">
+  <div class="facts-inner">
+    <div class="facts-left">
+      <div class="facts-overline">Malta en Abril</div>
+      <div class="facts-heading">Suavidad primaveral<br>y luz<br><em>mediterránea</em></div>
+      <div class="facts-sub">Abril es uno de los mejores meses para visitar Malta: temperaturas ideales entre 16 y 23°C, cielo despejado, vegetación en flor. Sin riesgo de aglomeraciones estivales, los sitios se visitan con serenidad.</div>
+    </div>
+    <div class="facts-right">
+      <div>
+        <div class="facts-col-label lbl-clim">Clima</div>
+        <div class="clim-row"><div class="clim-key">🌡️ Temp. máx.</div><div class="clim-right"><span class="clim-val">23°C</span><span class="clim-note">agradable</span></div></div>
+        <div class="clim-row"><div class="clim-key">🌡️ Temp. mín.</div><div class="clim-right"><span class="clim-val">16°C</span><span class="clim-note">noche fresca</span></div></div>
+        <div class="clim-row"><div class="clim-key">🌊 Mar</div><div class="clim-right"><span class="clim-val">17°C</span><span class="clim-note">apto para nadar</span></div></div>
+        <div class="clim-row"><div class="clim-key">☀️ Insolación</div><div class="clim-right"><span class="clim-val">9h</span><span class="clim-note">por día</span></div></div>
+        <div class="clim-row"><div class="clim-key">🌧️ Lluvia</div><div class="clim-right"><span class="clim-val">Escasa</span><span class="clim-note">poco probable</span></div></div>
+      </div>
+      <div class="facts-col-right">
+        <div class="facts-col-label lbl-fact">Información práctica</div>
+        <div class="fact-row"><div class="fact-key">✈️ Vuelo</div><div class="fact-val">~3h desde España</div></div>
+        <div class="fact-row"><div class="fact-key">🗣️ Idioma</div><div class="fact-val">Inglés / Maltés</div></div>
+        <div class="fact-row"><div class="fact-key">💶 Moneda</div><div class="fact-val">Euro (€)</div></div>
+        <div class="fact-row"><div class="fact-key">📍 Capital</div><div class="fact-val">La Valeta</div></div>
+        <div class="fact-row"><div class="fact-key">🇪🇺 Estatus</div><div class="fact-val">UE — Espacio Schengen</div></div>
+        <div class="fact-row"><div class="fact-key">🏨 Alojamiento</div><div class="fact-val">La Valeta</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="malta-strip">
+    <div class="malta-strip-inner">
+      <div class="ms-item"><div class="ms-key">Capital</div><div class="ms-val">La Valeta</div><div class="ms-sub">UNESCO 1980</div></div>
+      <div class="ms-item"><div class="ms-key">Área</div><div class="ms-val">316 km²</div><div class="ms-sub">3 îlas</div></div>
+      <div class="ms-item"><div class="ms-key">Población</div><div class="ms-val">525 000</div><div class="ms-sub">hab.</div></div>
+      <div class="ms-item"><div class="ms-key">Historia</div><div class="ms-val">5 500 ans</div><div class="ms-sub">templos megalíticos</div></div>
+      <div class="ms-item"><div class="ms-key">Caballeros</div><div class="ms-val">1530–1798</div><div class="ms-sub">Orden de San Juan</div></div>
+      <div class="ms-item"><div class="ms-key">Clima</div><div class="ms-val">300 j/an</div><div class="ms-sub">de sol</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="overview-section" id="overview">
+  <div class="overview-inner">
+    <div class="section-overline">Resumen del programa</div>
+    <div class="section-title">6 días de descubrimiento en Malta</div>
+    <div class="ov-table-wrap">
+      <table class="ov">
+        <thead>
+          <tr>
+            <th></th>
+            <th><span class="dh-num">1</span><span class="dh-date">31 marzo</span><span class="dh-name">Llegada y Tres Ciudades</span></th>
+            <th><span class="dh-num">2</span><span class="dh-date">1 abril</span><span class="dh-name">Mdina</span></th>
+            <th><span class="dh-num">3</span><span class="dh-date">2 abril</span><span class="dh-name">La Valeta</span></th>
+            <th><span class="dh-num">4</span><span class="dh-date">3 abril</span><span class="dh-name">Gozo</span></th>
+            <th><span class="dh-num">5</span><span class="dh-date">4 abril</span><span class="dh-name">Sur</span></th>
+            <th><span class="dh-num">6</span><span class="dh-date">5 abril</span><span class="dh-name">Salida</span></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- MATIN -->
+          <tr>
+            <td class="slot-label">Mañana</td>
+
+            <!-- J1 matin -->
+            <td><div class="ov-empty" style="color:var(--stone);font-style:italic;font-size:11px;">Vuelo ESP → MLA</div></td>
+
+            <!-- J2 matin — coach expandable + sous-items -->
+            <td><div class="cell-stack">
+              <div class="ov-cell ov-act ov-coach" id="ov-card-mdina-coach">
+                <a class="ov-coach-text" href="#card-mdina-coach" style="text-decoration:none;display:block;">
+                  <div class="ov-cell-type">Visita guiada</div>
+                  <div class="ov-cell-name">Autocar &amp; visita Mdina, Rabat, Dingli Cliffs y Mosta</div>
+                </a>
+                <button class="ov-coach-toggle" onclick="toggleOvCoach(document.getElementById('ov-card-mdina-coach'))" aria-label="Voir les sites">▾</button>
+              </div>
+              <div class="ov-sub-list">
+                <a class="ov-sub-item" href="#card-mdina"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Mdina</div></a>
+                <a class="ov-sub-item" href="#card-rabat"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Rabat</div></a>
+                <a class="ov-sub-item" href="#card-dingli"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Dingli Cliffs</div></a>
+                <a class="ov-sub-item" href="#card-mosta"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Mosta</div></a>
+              </div>
+            </div></td>
+
+            <!-- J3 matin — coach expandable + sous-items -->
+            <td><div class="cell-stack">
+              <div class="ov-cell ov-act ov-coach" id="ov-card-valletta-coach">
+                <a class="ov-coach-text" href="#card-valletta-coach" style="text-decoration:none;display:block;">
+                  <div class="ov-cell-type">Visita guiada</div>
+                  <div class="ov-cell-name">Autocar &amp; visita Barracka Gardens y Historical City Walk</div>
+                </a>
+                <button class="ov-coach-toggle" onclick="toggleOvCoach(document.getElementById('ov-card-valletta-coach'))" aria-label="Voir les sites">▾</button>
+              </div>
+              <div class="ov-sub-list">
+                <a class="ov-sub-item" href="#card-valletta-coach"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Barracka Gardens</div></a>
+                <a class="ov-sub-item" href="#card-valletta-coach"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Historical City Walk</div></a>
+              </div>
+            </div></td>
+
+            <!-- J4 matin — coach expandable + sous-items -->
+            <td><div class="cell-stack">
+              <div class="ov-cell ov-act ov-coach" id="ov-card-gozo-coach">
+                <a class="ov-coach-text" href="#card-gozo-coach" style="text-decoration:none;display:block;">
+                  <div class="ov-cell-type">Visita guiada</div>
+                  <div class="ov-cell-name">Autocar &amp; visita Victoria &amp; La Ciudadela, Ta Pinu, Xlendi Bay y Dwejra</div>
+                </a>
+                <button class="ov-coach-toggle" onclick="toggleOvCoach(document.getElementById('ov-card-gozo-coach'))" aria-label="Voir les sites">▾</button>
+              </div>
+              <div class="ov-sub-list">
+                <a class="ov-sub-item" href="#card-victoria"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Victoria &amp; La Ciudadela</div></a>
+                <a class="ov-sub-item" href="#card-tapinu"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Ta Pinu</div></a>
+                <a class="ov-sub-item" href="#card-xlendi"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Xlendi Bay </div></a>
+                <a class="ov-sub-item" href="#card-dwejra"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Dwejra</div></a>
+              </div>
+            </div></td>
+
+            <!-- J5 matin — coach expandable + sous-items -->
+            <td><div class="cell-stack">
+              <div class="ov-cell ov-act ov-coach" id="ov-card-south-coach">
+                <a class="ov-coach-text" href="#card-south-coach" style="text-decoration:none;display:block;">
+                  <div class="ov-cell-type">Visita guiada</div>
+                  <div class="ov-cell-name">Autocar &amp; visita Marsaxlokk, Blue Grotto y Templos Magníficos</div>
+                </a>
+                <button class="ov-coach-toggle" onclick="toggleOvCoach(document.getElementById('ov-card-south-coach'))" aria-label="Voir les sites">▾</button>
+              </div>
+              <div class="ov-sub-list">
+                <a class="ov-sub-item" href="#card-marsaxlokk"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Marsaxlokk</div></a>
+                <a class="ov-sub-item" href="#card-blueGrotto"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Blue Grotto</div></a>
+              </div>
+            </div></td>
+
+            <!-- J6 matin -->
+            <td><div class="ov-empty" style="color:var(--stone);font-style:italic;font-size:11px;">Según horarios de vuelo</div></td>
+          </tr>
+
+          <!-- APRÈS-MIDI -->
+          <tr>
+            <td class="slot-label">Tarde</td>
+
+            <!-- J1 après-midi -->
+            <td><div class="cell-stack">
+              <a class="ov-cell ov-trf" href="#card-transfer"><div class="ov-cell-type">Traslado</div><div class="ov-cell-name">Aeropuerto → Hotel</div></a>
+              <a class="ov-cell ov-act" href="#card-trois-cites"><div class="ov-cell-type">Visita guiada</div><div class="ov-cell-name">Autocar &amp; visita Las Tres Ciudades</div></a>
+              <a class="ov-cell ov-exp" href="#card-harbour-cruise"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Crucero por el puerto</div></a>
+            </div></td>
+
+            <!-- J2 après-midi -->
+            <td><div class="cell-stack">
+              <a class="ov-cell ov-exp" href="#card-stpauls-cathedral"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">St Paul's Catedral</div></a>
+              <a class="ov-cell ov-exp" href="#card-mosta-dome"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Mosta Dome</div></a>
+              <a class="ov-cell ov-exp" href="#card-catacombs"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">St Paul's Catacombes</div></a>
+              <a class="ov-cell ov-exp" href="#card-domus-romana"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Domus Romana</div></a>
+            </div></td>
+
+            <!-- J3 après-midi -->
+            <td><div class="cell-stack">
+              <a class="ov-cell ov-exp" href="#card-stjohns"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">St John's Catedral</div></a>
+              <a class="ov-cell ov-exp" href="#card-archeo"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Museo de Arqueología</div></a>
+              <a class="ov-cell ov-exp" href="#card-grandmaster"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Palacio del Gran Maestre</div></a>
+            </div></td>
+
+            <!-- J4 après-midi -->
+            <td><div class="cell-stack">
+              <a class="ov-cell ov-exp" href="#card-ggantija"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Templos Ggantija</div></a>
+              <a class="ov-cell ov-trf" href="#card-gozo-ferry"><div class="ov-cell-type">Traslado</div><div class="ov-cell-name">Ferry Malta ↔ Gozo</div></a>
+            </div></td>
+
+            <!-- J5 après-midi -->
+            <td><div class="cell-stack">
+              <a class="ov-cell ov-exp" href="#card-hagar-qim"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Templos Ħaġar Qim</div></a>
+              <a class="ov-cell ov-exp" href="#card-mnajdra"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Templos Mnajdra</div></a>
+              <a class="ov-cell ov-exp" href="#card-tarxien"><div class="ov-cell-type">Opcional</div><div class="ov-cell-name">Templos Tarxien</div></a>
+            </div></td>
+
+            <!-- J6 après-midi -->
+            <td><div class="cell-stack">
+              <a class="ov-cell ov-trf" href="#card-depart"><div class="ov-cell-type">Traslado</div><div class="ov-cell-name">Hotel → Aeropuerto</div></a>
+            </div></td>
+          </tr>
+
+          <!-- SOIR -->
+          <tr>
+            <td class="slot-label">Noche</td>
+            <td><div class="cell-stack"><div class="ov-cell ov-rest" onclick="showTab('hotels')" style="cursor:pointer;"><div class="ov-cell-type">Alojamiento</div><div class="ov-cell-name">Noche en el hotel</div></div></div></td>
+            <td><div class="cell-stack"><div class="ov-cell ov-rest" onclick="showTab('hotels')" style="cursor:pointer;"><div class="ov-cell-type">Alojamiento</div><div class="ov-cell-name">Regreso al hotel — cena</div></div></div></td>
+            <td><div class="cell-stack"><div class="ov-cell ov-rest" onclick="showTab('hotels')" style="cursor:pointer;"><div class="ov-cell-type">Alojamiento</div><div class="ov-cell-name">Regreso al hotel — cena</div></div></div></td>
+            <td><div class="cell-stack"><div class="ov-cell ov-rest" onclick="showTab('hotels')" style="cursor:pointer;"><div class="ov-cell-type">Alojamiento</div><div class="ov-cell-name">Regreso al hotel — cena</div></div></div></td>
+            <td><div class="cell-stack"><div class="ov-cell ov-rest" onclick="showTab('hotels')" style="cursor:pointer;"><div class="ov-cell-type">Alojamiento</div><div class="ov-cell-name">Regreso al hotel — cena</div></div></div></td>
+            <td><div class="ov-empty">—</div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DAY STRIP -->
+<div class="day-strip">
+  <a class="day-link active" href="#day1">Día 1-Llegada y Tres Ciudades</a>
+  <a class="day-link" href="#day2">Día 2 - Mdina</a>
+  <a class="day-link" href="#day3">Día 3-La Valeta</a>
+  <a class="day-link" href="#day4">Día 4 - Gozo</a>
+  <a class="day-link" href="#day5">Día 5 - Sur</a>
+  <a class="day-link" href="#day6">Día 6 - Salida</a>
+</div>
+
+<div class="page">
+
+<div class="day-section" id="day1">
+  <div class="day-banner" id="banner-day1">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day1')">
+      <div class="dbt-left">
+        <div class="day-num-box">1</div>
+        <div>
+          <div class="day-title">Llegada &amp; Las Tres Ciudades</div>
+          <div class="day-meta">31 de marzo de 2027</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(3,1fr);">
+      <div class="sched-item"><div class="si-time">Llegada</div><div class="si-type trf">Traslado</div><div class="si-name">Aeropuerto → Hotel </div><div class="si-note">€20/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Media jornada</div><div class="si-type act">Visita Guiada</div><div class="si-name">Las Tres Ciudades — autocar &amp; guía</div><div class="si-note">€28/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Crucero por el puerto</div><div class="si-note">€25/pers.</div></div>
+    </div>
+  </div>
+  <div class="card-stack">
+    <div class="card" id="card-transfer">
+      <div class="card-img" style="height:300px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/ARRIVALS PHOTO.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge transfer">Traslado · Aeropuerto</div>
+          <div class="img-title">Traslado Aeropuerto → Hotel</div>
+          <div class="img-meta">Aeropuerto Internacional de Malta · Minibús privado · €20/pers.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Bienvenidos a la Isla de los Caballeros.&nbsp;»</div>
+        <div class="incl-line">Traslado privado ida y vuelta<span class='incl-sep'>·</span>Asistencia en el aeropuerto<span class='incl-sep'>·</span>Equipaje incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Trayecto</span><span class="efv">Aeropuerto Internacional (MLA) ↔ Hotel</span></div>
+            <div class="efact"><span class="efi">🚌</span><span class="efk">Vehículo</span><span class="efv">Minibús privado con conductor</span></div>
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€20/pers. — ida y vuelta incluida</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-trois-cites">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/trois cite.jpeg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita guiada · Media jornada</div>
+          <div class="img-title">Las Tres Ciudades</div>
+          <div class="img-meta">Autocar &amp; visita guiada · €28/pers.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Vittoriosa — «&nbsp;El victorioso&nbsp;» — donde los Caballeros repelieron a los otomanos durante el Gran Sitio de 1565.&nbsp;»</div>
+        <div class="incl-line">Autocar &amp; visita guiada<span class='incl-sep'>·</span>Senglea · Cospicua · Vittoriosa</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Las Tres Ciudades (Senglea, Cospicua y Vittoriosa) son las cunas de la historia de los Caballeros en Malta. Tiene <strong>Senglea</strong> el Vedette ofrece una vista magnífica del Gran Puerto.Tiene <strong>Vittoriosa (Birgu)</strong> los callejones medievales revelan el alma más auténtica de Malta; fue aquí donde los Caballeros se asentaron en 1530 y repelieron el asedio otomano de 1565.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">🚌</span><span class="efk">Transporte</span><span class="efv">Autocar con conductor &amp; guía</span></div>
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€28/pers.</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">Media jornada</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-harbour-cruise">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/harbour%20cruise2.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Crucero · Opcional</div>
+          <div class="img-title">Crucero por el Gran Puerto</div>
+          <div class="img-meta">€25/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;El Gran Puerto visto desde el agua - una experiencia que los fotógrafos jamás olvidarán.&nbsp;»</div>
+        <div class="incl-line">Crucero por el Gran Puerto<span class='incl-sep'>·</span>Vista panorámica de las murallas<span class='incl-sep'>·</span>€25/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€25/pers. — opcional</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~1h</span></div>
+            <div class="efact"><span class="efi">📍</span><span class="efk">Salida</span><span class="efv">Paseo marítimo de las Tres Ciudades</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='day-divider'><hr></div>
+
+<div class="day-section" id="day2">
+  <div class="day-banner" id="banner-day2">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day2')">
+      <div class="dbt-left">
+        <div class="day-num-box">2</div>
+        <div>
+          <div class="day-title">Mdina  <em>— La Ciudad del Silencio</em></div>
+          <div class="day-meta">1 de abril de 2027 · Autocar &amp; visita guiada — €38/pers.</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(5,1fr);">
+      <div class="sched-item"><div class="si-time">Tiempo de día</div><div class="si-type act">Visita guiada</div><div class="si-name">Autocar &amp; visita guiada · €38/pers.</div><div class="si-note">Mdina · Rabat · Dingli Cliffs · Mosta</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">St Paul's Catedral</div><div class="si-note">€15/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Mosta Dome</div><div class="si-note">€8/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">St Paul's Catacombs</div><div class="si-note">€8/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name"> Domus Romana</div><div class="si-note">€8/pers.</div></div>
+    </div>
+  </div>
+  <div class="card-stack">
+    <div class="card" id="card-mdina-coach">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/mdina.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita guiada · Tiempo de día </div>
+          <div class="img-title">Autocar &amp; visita guiada — Mdina, Rabat, Dingli Cliffs &amp; Mosta</div>
+          <div class="img-meta">€38/pers.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;El corazón de Malta - la antigua capital, los acantilados, las catacumbas y la cúpula milagrosa.&nbsp;»</div>
+        <div class="incl-line">Autocar &amp; visita guiada incluidos<span class='incl-sep'>·</span>Mdina<span class='incl-sep'>·</span>Rabat<span class='incl-sep'>·</span>Dingli Cliffs<span class='incl-sep'>·</span>Mosta</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">🚌</span><span class="efk">Transporte</span><span class="efv">Autocar con conductor</span></div>
+            <div class="efact"><span class="efi">🗣️</span><span class="efk">Guía</span><span class="efv">Guía experto en historia &amp; cultura</span></div>
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€38/pers.</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">Tiempo de día </span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-mdina">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/mdina-los-secretos-de-la-ciudad-del-silencio-10.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Mdina</div>
+          <div class="img-title">Mdina — La Ciudad del Silencio</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Pasear por las callejuelas de Mdina es como retroceder ocho siglos a una ciudad congelada en el tiempo.&nbsp;»</div>
+        <div class="incl-line">Ciudad medieval fortificada<span class='incl-sep'>·</span>Bastion Square &amp; panorama<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+        <div class="photo-grid-b" style="height:700px;">
+          <div class="pgb-main" onclick="openLightbox(['https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/mdina-los-secretos-de-la-ciudad-del-silencio-10.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/mdina 2.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/MDINA%20street.jpg'],0,)">
+            <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/mdina-los-secretos-de-la-ciudad-del-silencio-10.jpg" onerror="this.style.display='none'">
+            <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            <div class="photo-cap">Vista aérea de Mdina</div>
+            <div class="photo-count-badge">3 fotos</div>
+          </div>
+          <div class="pgb-stack">
+            <div class="pgb-s" onclick="openLightbox(['https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/mdina-los-secretos-de-la-ciudad-del-silencio-10.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/mdina 2.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/MDINA%20street.jpg'],1,)">
+              <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/mdina 2.jpg" onerror="this.style.display='none'">
+              <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            </div>
+            <div class="pgb-s" onclick="openLightbox(['https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/mdina-los-secretos-de-la-ciudad-del-silencio-10.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/mdina 2.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/MDINA%20street.jpg'],2,)">
+              <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/MDINA%20street.jpg" onerror="this.style.display='none'">
+              <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            </div>
+          </div>
+        </div>
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Mdina, la antigua capital de Malta, es apodada «&nbsp;La ciudad silenciosa&nbsp;» por sus callejones desiertos y su atmósfera atemporal. El <strong>Bastion Square</strong>, situado en el extremo norte de las fortificaciones, ofrece una panorámica excepcional de toda la isla, una de las vistas más bellas del Mediterráneo.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Mdina, centro de la isla</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~1h30</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-rabat">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/rabat-village-malta.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Rabat</div>
+          <div class="img-title">Rabat</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;A las puertas de Mdina, Rabat esconde kilómetros de túneles subterráneos bajo sus calles.&nbsp;»</div>
+        <div class="incl-line">Ciudad adyacente a Mdina<span class='incl-sep'>·</span>Callejones &amp; patrimonio<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Rabat, ciudad hermana de Mdina, posee un rico patrimonio: catacumbas paleocristianas, la Gruta de San Pablo y el Museo Wignacourt. La ciudad revela el pasado más profundo de Malta, desde la época romana hasta el cristianismo primitivo.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Rabat, centro de la isla</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~1h</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-dingli">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/dingli cliffs.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Dingli Cliffs</div>
+          <div class="img-title"> Dingli Cliffs</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;El punto culminante de Malta — acantilados verticales sobre el Mediterráneo, vista hasta el horizonte.&nbsp;»</div>
+        <div class="incl-line">Acantilados 253 m<span class='incl-sep'>·</span>Punto más alto de Malta<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Los Acantilados de Dingli se precipitan 253 metros hacia el Mediterráneo y constituyen el punto más alto de la isla. La vista panorámica sobre el mar y el islote de Filfla es espectacular, especialmente al atardecer cuando la luz dorada abrasa la piedra caliza.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Costa suroeste de Malta</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~30 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-mosta">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/MOSTA.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Mosta</div>
+          <div class="img-title">Mosta — La Iglesia del Milagro</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;La tercera cúpula sin soporte más grande del mundo, y la bomba que no explotó.&nbsp;»</div>
+        <div class="incl-line">Iglesia neoclásica 1860<span class='incl-sep'>·</span>El milagro de 1942<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">La iglesia de Mosta está coronada por una de las mayores cúpulas autoportantes del mundo. En 1942, una bomba alemana atravesó la cúpula y cayó entre 300 fieles reunidos para la misa — sin explotar. La bomba desactivada se expone en la sacristía. Un milagro arraigado en la memoria colectiva maltesa.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Mosta, centro de la isla</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~30 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-stpauls-cathedral">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Mdina La Cité du Silence.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Catedral de San Pablo — Mdina</div>
+          <div class="img-meta">€15/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Una obra maestra del barroco, obra de Lorenzo Gafà, erigida en el lugar donde se dice que San Pablo convirtió al gobernador romano.&nbsp;»</div>
+        <div class="incl-line">Arquitectura barroca 1693<span class='incl-sep'>·</span>Tesoros litúrgicos<span class='incl-sep'>·</span>€15/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">La Catedral de San Pablo (1693) está construida en el mismo lugar donde San Pablo habría convertido a Publio, gobernador romano de la isla. Su interior es de gran riqueza: frescos en el techo, cuadros de maestros, suelo de mármoles de colores y un tesoro sagrado excepcional.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€15/pers. — opcional</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-mosta-dome">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/dome mosta.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title"> Mosta Dome</div>
+          <div class="img-meta">€8/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Entra bajo la cúpula y contempla la bomba de 1942 expuesta en la sacristía.&nbsp;»</div>
+        <div class="incl-line">Entrada en la iglesia<span class='incl-sep'>·</span>La bomba de 1942<span class='incl-sep'>·</span>€8/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Mosta es una ciudad en la Región Norte de Malta, al noroeste de La Valeta. En 2014, su población se estimaba en 20.290 habitantes, lo que la convertía en la tercera ciudad más poblada de Malta. El edificio más famoso de Mosta es la Rotonda, una gran basílica construida con la tercera cúpula sin soporte más grande del mundo. La Iglesia Parroquial de la Asunción, comúnmente conocida como la Rotonda de Mosta o la Cúpula de Mosta, es una iglesia parroquial católica ubicada en Mosta. Fue construida entre 1833 y 1860 según los diseños neoclásicos de Giorgio Grognet de Vassé, sobre el emplazamiento de una iglesia renacentista anterior construida alrededor de 1614 según los diseños de Tommaso Dingli.​</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€8/pers. — opcional</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-catacombs">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/st-pauls-catacombs-1.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Catacumbas de San Pablo — Rabat</div>
+          <div class="img-meta">€8/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Una red subterránea de galerías funerarias paleocristianas excavadas en la roca caliza. &nbsp;»</div>
+        <div class="incl-line">Catacumbas ss. III–VII<span class='incl-sep'>·</span>Galerías subterráneas<span class='incl-sep'>·</span>€8/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Las Catacumbas de San Pablo en Rabat son una de las redes funerarias subterráneas más extensas de Malta, que datan de los siglos III–VII. Tumbas con baldaquino, nichos funerarios y salas de banquete fúnebre atestiguan el cristianismo primitivo en Malta.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€8/pers. — opcional</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-domus-romana">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/domus romana.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Domus Romana — Rabat</div>
+          <div class="img-meta">€8/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Los mosaicos romanos más bellos de Malta, en el emplazamiento de una villa patricia del siglo I a.C. &nbsp;»</div>
+        <div class="incl-line">Villa romana s. I a.C.<span class='incl-sep'>·</span>Mosaicos policromados<span class='incl-sep'>·</span>€8/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">La Domus Romana es un museo construido sobre los restos de una rica villa romana del siglo I a.C. Alberga mosaicos policromados notablemente conservados y objetos de la vida cotidiana romana.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€8/pers. — opcional</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='day-divider'><hr></div>
+
+<div class="day-section" id="day3">
+  <div class="day-banner" id="banner-day3">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day3')">
+      <div class="dbt-left">
+        <div class="day-num-box">3</div>
+        <div>
+          <div class="day-title">La Valeta <em>— Capital baroque</em></div>
+          <div class="day-meta">2 de abril de 2027 · Autocar &amp; visita guiada — €38/pers.</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(4,1fr);">
+      <div class="sched-item"><div class="si-time">Tiempo de día</div><div class="si-type act">Visita guiada</div><div class="si-name"> Autocar &amp; visita guiada · €38/pers.</div><div class="si-note">Barracka Gardens &amp; Historical City Walk</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">St John's Catedral</div><div class="si-note">€15/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Museo de Arqueología</div><div class="si-note">€8/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Palacio del Gran Maestre</div><div class="si-note">€12/pers.</div></div>
+    </div>
+  </div>
+  <div class="card-stack">
+   <div class="card" id="card-valletta-coach">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita guiada · Tiempo de día </div>
+          <div class="img-title">Barracka Gardens &amp; Historical City Walk</div>
+          <div class="img-meta">Autocar &amp; visita guiada · €38/pers.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Los Barracka Gardens y el paseo histórico por la capital más hermosa del Mediterráneo.&nbsp;»</div>
+        <div class="incl-line">Autocar &amp; visita guiada<span class="incl-sep">·</span>Barracka Gardens<span class="incl-sep">·</span>City Walk histórico</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="photo-grid-b" style="height:600px;">
+          <div class="pgb-main" onclick="openLightbox(['https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens.jpg','https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/LA VALLETA.jpg','https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens%201.jpg'],0,)">
+            <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens.jpg" onerror="this.style.display='none'">
+            <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            <div class="photo-cap">La Valeta — Capitale UNESCO</div>
+            <div class="photo-count-badge">3 fotos</div>
+          </div>
+          <div class="pgb-stack">
+            <div class="pgb-s" onclick="openLightbox(['https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens.jpg','https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/LA VALLETA.jpg','https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens%201.jpg'],1,)">
+              <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/LA VALLETA.jpg" onerror="this.style.display='none'">
+              <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            </div>
+            <div class="pgb-s" onclick="openLightbox(['https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens.jpg','https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/LA VALLETA.jpg','https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens%201.jpg'],2,)">
+              <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/barracka%20gardens%201.jpg" onerror="this.style.display='none'">
+              <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Los <strong>Upper Barracka Gardens</strong> ofrecen una de las vistas más hermosas del Mediterráneo, con vistas al Gran Puerto, sus bastiones y las Tres Ciudades enfrente. El recorrido histórico guiado por las calles de La Valeta —construida en tan solo 15 años en el siglo XVI— revela la ambición arquitectónica de los Caballeros de San Juan.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">🚌</span><span class="efk">Transporte</span><span class="efv">Autocar con conductor</span></div>
+            <div class="efact"><span class="efi">🗣️</span><span class="efk">Guía</span><span class="efv">Guía experto en historia &amp; cultura</span></div>
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€38/pers.</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">Tiempo de día</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-stjohns">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/cathédrale saint jean.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Co-Catedral de San Juan</div>
+          <div class="img-meta">€15/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;400 losas de mármol policromado en el suelo y los dos Caravaggio más importantes del mundo.&nbsp;»</div>
+        <div class="incl-line">Barroco s. XVI<span class='incl-sep'>·</span>Suelo de mármoles de los Caballeros<span class='incl-sep'>·</span>Los dos Caravaggios<span class='incl-sep'>·</span>€15/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+        <div class="photo-grid-b" style="height:450px;">
+          <div class="pgb-main" onclick="openLightbox(['https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Co-Cathédrale Saint-Jean.jpg', 'https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/cathédrale saint jean.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/valletta%202.jpg'],0,)">
+            <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Co-Cathédrale Saint-Jean.jpg" onerror="this.style.display='none'">
+            <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            <div class="photo-cap">Co-Catedral de San Juan</div>
+            <div class="photo-count-badge">3 fotos</div>
+          </div>
+          <div class="pgb-stack">
+            <div class="pgb-s" onclick="openLightbox(['https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Co-Cathédrale Saint-Jean.jpg', 'https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/cathédrale saint jean.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/valletta%202.jpg'],1,)">
+              <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/cathédrale saint jean.jpg" onerror="this.style.display='none'">
+              <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            </div>
+            <div class="pgb-s" onclick="openLightbox(['https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Co-Cathédrale Saint-Jean.jpg', 'https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/cathédrale saint jean.jpg', 'https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/valletta%202.jpg'],2,)">
+              <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/valletta%202.jpg" onerror="this.style.display='none'">
+              <div class="photo-hover-overlay"><div class="ph-zoom">🔍</div></div>
+            </div>
+          </div>
+        </div>
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">La Co-catedral de San Juan es uno de los mejores ejemplos de arquitectura barroca del mundo. Su interior es de una riqueza deslumbrante : <strong>400 losas de mármol policromado</strong> cubriendo las tumbas de los Caballeros y las dos <strong>Caravaggio</strong> — La decapitación de San Juan Bautista (el lienzo firmado de mayor tamaño por el pintor) y San Jerónimo.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€15/pers. — opcional</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">60–90 min.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-archeo">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/MUSEE ARCHEOLOGY NATIONAL.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Museo de Arqueología</div>
+          <div class="img-meta">€8/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Las Venus de Malta, con 5.000 años de antigüedad, se encuentran entre las esculturas prehistóricas más bellas del mundo.&nbsp;»</div>
+        <div class="incl-line">Colecciones neolíticas &amp; romanas<span class='incl-sep'>·</span>Palacio s. XVI<span class='incl-sep'>·</span>€8/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">El Museo Arqueológico Nacional alberga colecciones que abarcan 7.000 años de historia de la isla. Sus obras maestras son los <strong>Venus de Malta</strong> y los artefactos de los templos megalíticos.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€8/pers. — opcional</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">45–60 min.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-grandmaster">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Palais du Grand Maître.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Palacio del Gran Maestre</div>
+          <div class="img-meta">€12/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;El corazón del poder de la Orden de San Juan durante dos siglos: frescos, tapices y armaduras.&nbsp;»</div>
+        <div class="incl-line">Apartamentos de Estado<span class='incl-sep'>·</span>Arsenal — armas &amp; armaduras<span class='incl-sep'>·</span>€12/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Los Apartamentos de Estado, residencia oficial de los Grandes Maestres durante más de dos siglos, están adornados con tapices y frescos flamencos. El Arsenal alberga una de las colecciones de armas y armaduras más importantes de Europa.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€12/pers. — opcional</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">60–75 min.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='day-divider'><hr></div>
+
+<div class="day-section" id="day4">
+  <div class="day-banner" id="banner-day4">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day4')">
+      <div class="dbt-left">
+        <div class="day-num-box">4</div>
+        <div>
+          <div class="day-title">Descubre Gozo <em>— Tiempo de día</em></div>
+          <div class="day-meta">3 de abril de 2027 · Autocar &amp; visita guiada — €40/pers.</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(3,1fr);">
+      <div class="sched-item"><div class="si-time">Tiempo de día</div><div class="si-type act">Visita guiada</div><div class="si-name">Autocar &amp; visita guiada · €40/pers.</div><div class="si-note">Victoria · La Ciudadela · Ta Pinu · Xlendi Bay · Dwejra</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Templos Ggantija</div><div class="si-note">€10/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Traslado</div><div class="si-type trf">Traslado</div><div class="si-name">Ferry Gozo</div><div class="si-note">€5/pers.</div></div>
+    </div>
+  </div>
+  <div class="card-stack">
+    <div class="card" id="card-gozo-coach">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/GOZO.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita guiada · Tiempo de día </div>
+          <div class="img-title">Autocar &amp; visita guiada — Victoria &amp; La Ciudadela, Ta Pinu, Xlendi Bay y Dwejra</div>
+          <div class="img-meta">€40/pers.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Gozo —más verde, más tranquila, más salvaje— la isla hermana que cautiva a las almas sensibles.&nbsp;»</div>
+        <div class="incl-line">Autocar &amp; visita guiada incluidos<span class='incl-sep'>·</span>Victoria<span class='incl-sep'>·</span>La Citadelle<span class='incl-sep'>·</span>Ta Pinu<span class='incl-sep'>·</span>Xlendi Bay<span class='incl-sep'>·</span>Dwejra</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">🚌</span><span class="efk">Transporte</span><span class="efv">Autocar con conductor</span></div>
+            <div class="efact"><span class="efi">🗣️</span><span class="efk">Guía</span><span class="efv">Guía experto en historia &amp; cultura</span></div>
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€40/pers.</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">Tiempo de día </span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-victoria">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/victoria.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Victoria &amp; La Ciudadela</div>
+          <div class="img-title">Victoria &amp; La Ciudadela</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;La Ciudadela de Gozo domina toda la isla; sus murallas ofrecen una vista de 360° del Mediterráneo.&nbsp;»</div>
+        <div class="incl-line">Victoria, capital de Gozo<span class='incl-sep'>·</span>La Ciudadela fortificada<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Victoria (Rabat) es la capital de Gozo. Su <strong>Ciudadela</strong>, antigua fortaleza medieval encaramada sobre un promontorio rocoso, ofrece una vista de 360° sobre toda la isla y el mar. Sus callejones empedrados, la catedral barroca y los museos la convierten en la visita imprescindible de Gozo.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Victoria, centro de Gozo</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~1h30</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-tapinu">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/ta pinu.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Ta Pinu</div>
+          <div class="img-title">Ta Pinu </div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;El lugar de peregrinación más sagrado de Malta: un lugar de milagros y devoción popular.&nbsp;»</div>
+        <div class="incl-line">Santuario nacional maltés<span class='incl-sep'>·</span>Lugar de peregrinación<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">El santuario de Ta Pinu es el lugar de peregrinación más importante del archipiélago maltés. Construido en el emplazamiento de una capilla del siglo XVI donde una mujer del pueblo habría escuchado la voz de la Virgen María en 1883, es hoy un símbolo de la fe maltesa y un monumento de la arquitectura neorrománica.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Gharb, noroeste de Gozo</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~30 min.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-xlendi">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/xlendi bay.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Xlendi Bay</div>
+          <div class="img-title">Xlendi Bay</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Una bahía enclavada entre acantilados de piedra caliza: una de las calas más bellas de Gozo.&nbsp;»</div>
+        <div class="incl-line">Bahía natural de Gozo<span class='incl-sep'>·</span>Acantilados calizos<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Xlendi es una encantadora bahía natural excavada en los acantilados de la costa suroeste de Gozo. Este pequeño pueblo de pescadores, enmarcado por paredes de caliza, es uno de los parajes más pintorescos de Gozo.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Costa suroeste de Gozo</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~30 min.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-dwejra">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/dwejra.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Dwejra</div>
+          <div class="img-title">Dwejra </div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Un paisaje lunar junto al mar - el lugar más espectacular de Gozo.&nbsp;»</div>
+        <div class="incl-line">Laguna interior<span class='incl-sep'>·</span>Acantilados dramáticos<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Dwejra es uno de los paisajes más espectaculares de Gozo, con su Blue Hole, su laguna interior y sus acantilados que se sumergen en el Mediterráneo. Antaño dominado por la célebre Azure Window — arco natural derrumbado en 2017 — el lugar conserva una belleza bruta y sorprendente.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Costa oeste de Gozo</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~30 min.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-ggantija">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/temples de Ggantija1.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Templos de Ggantija</div>
+          <div class="img-meta">€10/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Con 1.000 años de antigüedad que Stonehenge, se encuentra entre los edificios religiosos más antiguos del mundo.&nbsp;»</div>
+        <div class="incl-line">Templos megalíticos 3600 a.C.<span class='incl-sep'>·</span>Patrimonio Mundial UNESCO<span class='incl-sep'>·</span>€10/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Los templos de Ggantija datan de 3.600 a 3.000 a.C. — es decir, más de 1.000 años antes que Stonehenge. Declarados Patrimonio Mundial UNESCO, estos dos templos de muros colosales atestiguan una civilización prehistórica sofisticada.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€10/pers. — opcional</span></div>
+            <div class="efact"><span class="efi">🏛️</span><span class="efk">Estado</span><span class="efv">Patrimonio Mundial UNESCO</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-gozo-ferry">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/gozo%20main%20picture.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge transfer">Ferry · Traslado</div>
+          <div class="img-title">Ferry Malta ↔ Gozo</div>
+          <div class="img-meta">€5/pers. — Traslado</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Un trayecto de 20 minutos entre dos islas: dos mundos diferentes.&nbsp;»</div>
+        <div class="incl-line">Ferry ida y vuelta<span class='incl-sep'>·</span>Cirkewwa ↔ Mġarr<span class='incl-sep'>·</span>€5/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€5/pers.</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Travesía</span><span class="efv">~20 minutos</span></div>
+            <div class="efact"><span class="efi">⛴️</span><span class="efk">Trayecto</span><span class="efv">Malta ↔ Gozo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='day-divider'><hr></div>
+
+<div class="day-section" id="day5">
+  <div class="day-banner" id="banner-day5">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day5')">
+      <div class="dbt-left">
+        <div class="day-num-box">5</div>
+        <div>
+          <div class="day-title">Sur<em>— Tiempo de día</em></div>
+          <div class="day-meta">4 de abril de 2027 · Autocar &amp; visita guiada — €38/pers.</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(4,1fr);">
+      <div class="sched-item"><div class="si-time">Tiempo de día</div><div class="si-type act">Visita guiada</div><div class="si-name">Autocar &amp; visita guiada · €38/pers.</div><div class="si-note">Marsaxlokk · Blue Grotto · Templos</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Templos Ħaġar Qim</div><div class="si-note">€10/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Templos Mnajdra</div><div class="si-note">€8/pers.</div></div>
+      <div class="sched-item"><div class="si-time">Opcional</div><div class="si-type exp">Opcional</div><div class="si-name">Templos Tarxien</div><div class="si-note">€8/pers.</div></div>
+      
+    </div>
+  </div>
+  <div class="card-stack">
+    <div class="card" id="card-south-coach">
+      <div class="card-img" style="height:420px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/marsaxlokk.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita guiada · Tiempo de día </div>
+          <div class="img-title">Autocar &amp; visita guiada — Marsaxlokk, Blue Grotto &amp; Templos Magníficos</div>
+          <div class="img-meta">€38/pers.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;El espectacular sur de Malta — colores, mar y templos de 5.600 años de antigüedad.&nbsp;»</div>
+        <div class="incl-line">Autocar &amp; visita guiada incluida<span class='incl-sep'>·</span>Marsaxlokk<span class='incl-sep'>·</span>Blue Grotto<span class='incl-sep'>·</span>Templos Magníficos</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">🚌</span><span class="efk">Transporte</span><span class="efv">Autocar con conductor</span></div>
+            <div class="efact"><span class="efi">🗣️</span><span class="efk">Guía</span><span class="efv">Guía experto en historia &amp; cultura</span></div>
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">€38/pers.</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">Tiempo de día </span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-marsaxlokk">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/luzzu.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Marsaxlokk</div>
+          <div class="img-title">Marsaxlokk — Pueblo de pescadores</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Las coloridas barcas luzzus - el pueblo más auténtico de Malta.&nbsp;»</div>
+        <div class="incl-line">Pueblo de pescadores tradicional<span class='incl-sep'>·</span>Luzzus de colores<span class='incl-sep'>·</span>Mercado dominical<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Marsaxlokk es el pueblo de pescadores más auténtico de Malta. Sus <strong>luzzus</strong> — barcas tradicionales pintadas de colores vivos adornadas con el ojo de Osiris — convierten este puerto en uno de los paisajes más fotografiados de la isla. El mercado dominical de pescado es famoso en todo el país.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Bahía de Marsaxlokk, sur de Malta</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~1h</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-blueGrotto">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/BLUE GROTTO.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge activity">Visita · Blue Grotto</div>
+          <div class="img-title">Blue Grotto — La Gruta Azul</div>
+          <div class="img-meta">Incluido en la excursión</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Aguas azules fosforescentes que parecen irreales: una de las costas más bellas del Mediterráneo.&nbsp;»</div>
+        <div class="incl-line">Cuevas marinas<span class='incl-sep'>·</span>Aguas turquesas<span class='incl-sep'>·</span>Acantilados calizos<span class='incl-sep'>·</span>Incluido</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">El Blue Grotto es un conjunto de cuevas marinas en la costa sur de Malta donde las aguas toman tonos turquesa y fosforescentes de una belleza impactante. La visita desde el borde de los acantilados ofrece una vista espectacular sobre los arcos naturales y las cuevas excavadas en la roca caliza.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Lugar</span><span class="efv">Costa sur de Malta</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Duración</span><span class="efv">~1h</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-hagar-qim">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/temples Ħaġar Qim1.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Templos Ħaġar Qim</div>
+          <div class="img-meta">€10/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Encaramados en un acantilado con vistas al mar, estos templos de 5.600 años de antigüedad dominan el sur de Malta.&nbsp;»</div>
+        <div class="incl-line">Templos megalíticos 3600 a.C.<span class='incl-sep'>·</span>Patrimonio Mundial UNESCO<span class='incl-sep'>·</span>€10/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Ħaġar Qim (3600–3200 a.C.) se alza sobre una cresta caliza que domina el mar del sur. Sus megalitos — algunos de los más grandes del mundo — forman un complejo notablemente bien conservado. Inscrito en el Patrimonio Mundial UNESCO.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€10/pers. — opcional</span></div>
+            <div class="efact"><span class="efi">🏛️</span><span class="efk">Estado</span><span class="efv">Patrimonio Mundial UNESCO</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-mnajdra">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/temples de Mnajdra.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Templos Mnajdra</div>
+          <div class="img-meta">€8/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Un calendario solar de piedra - en los equinoccios, los rayos del sol se alinean perfectamente con los umbrales.&nbsp;»</div>
+        <div class="incl-line">Templos 3600–2500 a.C.<span class='incl-sep'>·</span>Alineaciones solares<span class='incl-sep'>·</span>€8/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Los templos de Mnajdra (3600–2500 a.C.) son un verdadero calendario solar en piedra: en los equinoccios y solsticios, los rayos del sol se alinean perfectamente con los umbrales de los templos. Uno de los ejemplos más fascinantes de astronomía prehistórica en el Mediterráneo.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€8/pers. — opcional</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-tarxien">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/temples Tarxien.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Entrada opcional</div>
+          <div class="img-title">Templos Tarxien</div>
+          <div class="img-meta">€8/pers. — opcional</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Los templos más ricamente decorados de Malta: espirales esculpidas, bajorrelieves y altares ornamentados.&nbsp;»</div>
+        <div class="incl-line">Templos 3150–2500 a.C.<span class='incl-sep'>·</span>Relieves esculpidos<span class='incl-sep'>·</span>€8/pers.</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La experiencia</div>
+          <div class="exp-narrative">Los templos de Tarxien (3150-2500 a. C.) son los más ricamente decorados de Malta: sus muros están adornados con espirales esculpidas, animales en bajorrelieve y altares grabados. La colosal estatua de una deidad hallada allí se exhibe en el Museo Arqueológico de La Valeta.</div>
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Entrada</span><span class="efv">€8/pers. — opcional</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='day-divider'><hr></div>
+
+<div class="day-section" id="day6">
+  <div class="day-banner" id="banner-day6">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day6')">
+      <div class="dbt-left">
+        <div class="day-num-box">6</div>
+        <div>
+          <div class="day-title">Salida <em>— Según horarios de vuelo</em></div>
+          <div class="day-meta">5 de abril de 2027</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(2,1fr);">
+      <div class="sched-item"><div class="si-time">Si vuelo tardío</div><div class="si-type act">Excursion</div><div class="si-name">Media jornada — visitas pendientes programa Mdina</div></div>
+      <div class="sched-item"><div class="si-time">Salida</div><div class="si-type trf">Traslado</div><div class="si-name">Hotel → Aeropuerto</div><div class="si-note">Incluido en el forfait de traslados</div></div>
+    </div>
+  </div>
+  <div class="card-stack">
+    <div class="card" id="card-depart">
+      <div class="card-img" style="height:360px;">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/DEPARTURES%20PHOTO.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge transfer">Salida</div>
+          <div class="img-title">Traslado Hotel → Aeropuerto</div>
+          <div class="img-meta">Aeropuerto Internacional de Malta · Según horarios de vuelo</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Hasta pronto, Malta - las piedras doradas y el mar turquesa permanecerán en tu memoria durante mucho tiempo.&nbsp;»</div>
+        <div class="incl-line">Traslado hotel → aeropuerto incluido<span class='incl-sep'>·</span>Si vuelo tardío: posible media jornada adicional</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Detalles</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Detalles</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">💶</span><span class="efk">Precio</span><span class="efv">Incluido en el forfait de traslados</span></div>
+            <div class="efact"><span class="efi">📍</span><span class="efk">Salida</span><span class="efv">Aeropuerto Internacional de Malta (MLA)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<!-- REPAS -->
+<section style="background:var(--warm-white);padding:48px;">
+  <div style="max-width:var(--max-w);margin:0 auto;">
+    <div class="section-overline">Restauración</div>
+    <div class="section-title" style="margin-bottom:24px;">Almuerzos en excursión — opcionales</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
+
+      <!-- OPTION 1 -->
+      <div style="background:var(--parchment);border-radius:var(--radius-lg);padding:24px;border:0.5px solid var(--border);">
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--terra);margin-bottom:10px;">Opción 1 — Menú almuerzo</div>
+        <div style="font-family:var(--display);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px;">3 platos — restaurantes locales</div>
+        <div style="font-size:13px;color:#5C4A38;line-height:1.65;margin-bottom:16px;">Almuerzo de 3 platos en restaurantes locales auténticos durante las jornadas de excursión.</div>
+        <div style="font-size:22px;font-weight:700;color:var(--blue);">€39/pers.</div>
+        <div style="font-size:11px;color:var(--stone);">Menú 3 platos</div>
+        <div style="font-size:18px;font-weight:700;color:var(--blue);margin-top:10px;">+ €12/pers.</div>
+        <div style="font-size:11px;color:var(--stone);">Bebidas (½ vino, agua, café)</div>
+      </div>
+
+      <!-- OPTION 2 -->
+      <div style="background:var(--parchment);border-radius:var(--radius-lg);padding:24px;border:0.5px solid var(--border);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);border-radius:var(--radius-lg) var(--radius-lg) 0 0;"></div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Opción 2 — Almuerzo superior</div>
+        <div style="font-family:var(--display);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px;">3 platos — todo incluido</div>
+        <div style="font-size:13px;color:#5C4A38;line-height:1.65;margin-bottom:16px;">Almuerzo superior de 3 platos con bebidas totalmente incluidas — ½ vino, ½ agua y café incluidos.</div>
+        <div style="font-size:28px;font-weight:700;color:var(--gold);">€75/pers.</div>
+        <div style="font-size:11px;color:var(--stone);margin-bottom:14px;">Todo incluido</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="font-size:12px;color:#5C4A38;display:flex;align-items:center;gap:6px;"><span style="color:var(--gold);font-weight:700;">✓</span> Menú 3 platos</div>
+          <div style="font-size:12px;color:#5C4A38;display:flex;align-items:center;gap:6px;"><span style="color:var(--gold);font-weight:700;">✓</span> ½ vino incluido</div>
+          <div style="font-size:12px;color:#5C4A38;display:flex;align-items:center;gap:6px;"><span style="color:var(--gold);font-weight:700;">✓</span> ½ agua incluida</div>
+          <div style="font-size:12px;color:#5C4A38;display:flex;align-items:center;gap:6px;"><span style="color:var(--gold);font-weight:700;">✓</span> Café incluido</div>
+        </div>
+      </div>
+
+      <!-- NOTE PENSION -->
+      <div style="background:var(--parchment);border-radius:var(--radius-lg);padding:24px;border:0.5px solid var(--border);">
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">Nota sobre la pensión</div>
+        <div style="font-family:var(--display);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px;">Régimen BB o HB según hotel</div>
+        <div style="font-size:13px;color:#5C4A38;line-height:1.65;">Los hoteles propuestos ofrecen diferentes regímenes — algunos en BB (solo desayuno), otros incluyen la cena (HB). Los almuerzos son siempre opcionales y se facturan por separado durante las excursiones.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTURE -->
+<section class="dep-section">
+  <div class="dep-inner">
+    <div class="dep-icon">✈️</div>
+    <div class="dep-title">Salida — 5 de abril de 2027</div>
+    <div class="dep-body">Según los horarios de vuelo, puede organizarse una media jornada adicional para completar las visitas del programa. Traslado privado al Aeropuerto Internacional de Malta. Gracias por elegir Colours of Malta — esperamos recibirles pronto en la isla de los Caballeros.</div>
+    <div class="dep-chips">
+      <div class="dep-chip">Check-out hotel</div>
+      <div class="dep-chip">Posible media jornada</div>
+      <div class="dep-chip">Traslado privado €20/pers.</div>
+      <div class="dep-chip">Aeropuerto Internacional de Malta</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-top">
+      <div class="contact-overline">Su contacto dedicado</div>
+      <div class="contact-title">Estamos aquí para usted</div>
+      <div class="contact-sub">Para cualquier pregunta sobre este programa, tarifas o disponibilidades, nuestro equipo está a su disposición. Estaremos encantados de adaptar este viaje cultural a los deseos de su grupo.</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-photo">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/SITE%20VISIT%20LAST%20PAGE%20PHOTO.png" alt="Cheryl Ellul Bonici" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="profile-name">Cheryl Ellul Bonici</div>
+        <div class="profile-role">Coordinadora DMC · Colours of Malta</div>
+        <div class="profile-sep"></div>
+        <div class="contact-links">
+          <a class="contact-link wa" href="https://wa.me/35699896387" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <div><span class="cl-label">WhatsApp</span><span class="cl-val">+356 9989 6387</span></div>
+          </a>
+          <a class="contact-link em" href="mailto:cheryl@commalta.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            <div><span class="cl-label">Email</span><span class="cl-val">cheryl@com.com.mt</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="height:8px;background:var(--spectrum);"></div>
+<footer class="footer">
+  <div class="footer-wordmark">colours of malta</div>
+  <div class="footer-meta">Programa Malta · 31 marzo – 5 de abril de 2027</div>
+  <div class="footer-meta">cheryl@com.com.mt · +356 9989 6387</div>
+</footer>
+
+</div><!-- /tab-prog -->
+
+<!-- HOTELS TAB -->
+<div id="tab-hotels" class="page-tab">
+<div class="hotel-page">
+  <div class="hotel-page-inner">
+    <div class="hotel-pg-title">Opciones de hotel — Malta 2027</div>
+    <div class="hotel-pg-sub">Cinco hoteles seleccionados en Malta — de 3★ superior a 4★, en diferentes zonas (Sliema, Mellieħa, St Paul's Bay). Tarifas por persona por noche. Todos los regímenes incluyen el desayuno (BB), con opción de media pensión (HB) disponible según el hotel.</div>
+
+    <!-- ECO TAX IMPORTANT NOTICE -->
+    <div class="advice-box">
+      <div class="advice-box-title">⚠️ Contribución Medioambiental — A partir del 1 de junio de 2026</div>
+      <div class="advice-box-text">De conformidad con la legislación maltesa, se cobrarán directamente en la recepción del hotel <strong>€1,50 por persona por noche</strong> en concepto de Contribución Medioambiental. Este impuesto tiene un límite máximo de <strong>€15,00 por adulto</strong> por estancia. No está incluido en las tarifas siguientes y es pagadero en el establecimiento.</div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="comp-wrap">
+      <table class="comp">
+        <thead>
+          <tr>
+            <th class="comp-row-label"></th>
+            <th>Plaza Hotel<br><small style="font-weight:400;opacity:0.7;">Sliema</small></th>
+            <th>Maritim Hotel<br><small style="font-weight:400;opacity:0.7;">Mellieħa</small></th>
+            <th>San Antonio Hotel<br><small style="font-weight:400;opacity:0.7;">St Paul's Bay</small></th>
+            <th>Victoria Hotel<br><small style="font-weight:400;opacity:0.7;">Sliema</small></th>
+            <th>Santana Hotel<br><small style="font-weight:400;opacity:0.7;">St Paul's Bay</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="comp-row-label">Estrellas</td>
+            <td>⭐⭐⭐<small> sup.</small></td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Ubicación</td>
+            <td class="comp-val">Sliema</td>
+            <td class="comp-val">Mellieħa</td>
+            <td class="comp-val">St Paul's Bay</td>
+            <td class="comp-val">Sliema</td>
+            <td class="comp-val">St Paul's Bay</td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Régimen</td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€22 HB opc.</span></td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€24 HB opc.</span></td>
+            <td class="comp-val">HB incluido<br><span style="font-size:10px;color:var(--stone);">bebidas ilimitadas cena</span></td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€34 HB incluido boissons</span></td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€224 HB bebidas ilimitadas</span></td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Hab. individual/noche</td>
+            <td><div class="comp-rate">€90</div><div class="comp-note">Estándar individual BB</div></td>
+            <td><div class="comp-rate">€86</div><div class="comp-note">Estándar individual BB</div></td>
+            <td><div class="comp-rate">€122</div><div class="comp-note">Estándar individual HB</div></td>
+            <td><div class="comp-rate">€150</div><div class="comp-note">Estándar individual BB</div></td>
+            <td><div class="comp-rate">€86</div><div class="comp-note">Estándar individual BB</div></td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Hab. doble/pers./noche</td>
+            <td><div class="comp-rate">€52</div><div class="comp-note">Estándar doble BB</div></td>
+            <td><div class="comp-rate">€54</div><div class="comp-note">Estándar doble BB</div></td>
+            <td><div class="comp-rate">€76</div><div class="comp-note">Estándar doble HB</div></td>
+            <td><div class="comp-rate">€88</div><div class="comp-note">Estándar doble BB</div></td>
+            <td><div class="comp-rate">€54</div><div class="comp-note">Estándar doble BB</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- HOTEL CARDS -->
+    <div class="section-overline" style="margin-bottom:10px;">Fichas de hotel</div>
+    <div class="section-title" style="margin-bottom:28px;">Los 5 hoteles en detalle</div>
+    <div class="hotel-cards-grid">
+
+      <!-- PLAZA HOTEL -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Plaza.jpg" alt="Plaza Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐ Superior</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">Plaza Hotel</div>
+          <div class="h-card-loc">📍 Sliema — paseo marítimo</div>
+          <div class="h-card-desc">Hotel 3 estrellas superior idealmente situado en Sliema, a dos pasos del paseo marítimo y el comercio. Buena relación calidad-precio para una estancia en Malta.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — individual (single)</div><div class="h-rate-note">Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€90/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — doble</div><div class="h-rate-note">Por persona· Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€52/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Suplemento cena (HB)</div><div class="h-rate-note">Bebidas no incluidas</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€22/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Desayuno incluido (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Posición central Sliema</div>
+            <div class="h-incl-item"><span class="cross">✗</span>Bebidas cena no incluidas (HB opc.)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tarifas por persona por noche. +€1,50/pers./noche contribución medioambiental (tope €15/adulto) pagadera en recepción. Disponibilidad sujeta a confirmación.</div></div>
+        </div>
+      </div>
+
+      <!-- MARITIM HOTEL -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Maritim 1.jpg" alt="Maritim Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">Maritim Hotel</div>
+          <div class="h-card-loc">📍 Mellieħa — norte de Malta</div>
+          <div class="h-card-desc">Hotel 4 estrellas en Mellieħa, en el norte verde de Malta. Entorno tranquilo y relajante, cerca de las playas del norte. Excelente relación calidad-precio para un 4 estrellas.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — individual (single)</div><div class="h-rate-note">Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€86/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — doble</div><div class="h-rate-note">Por persona · Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€54/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Suplemento cena (HB)</div><div class="h-rate-note">Bebidas no incluidas</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€24/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Desayuno incluido (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Norte de Malta — entorno natural</div>
+            <div class="h-incl-item"><span class="cross">✗</span>Bebidas cena no incluidas (HB opc.)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tarifas por persona por noche. +€1,50/pers./noche contribución medioambiental (tope €15/adulto) pagadera en recepción. Disponibilidad sujeta a confirmación.</div></div>
+        </div>
+      </div>
+
+      <!-- SAN ANTONIO HOTEL -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/San Antonio.jpg" alt="The San Antonio Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">The San Antonio Hotel</div>
+          <div class="h-card-loc">📍 St Paul's Bay</div>
+          <div class="h-card-desc">Hotel 4 estrellas en St Paul's Bay, con un régimen de media pensión completo que incluye bebidas ilimitadas con la cena — un valor añadido real. Ideal para grupos que buscan todo incluido por la noche.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — individual (single)</div><div class="h-rate-note">Media pensión HB incluidoe</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€122/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — doble</div><div class="h-rate-note">Por persona · Media pensión HB incluidoe</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€76/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Bebidas cena</div><div class="h-rate-note">Bebidas ilimitadas incluidas con la cena</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">✓ Incluido</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Media pensión HB incluidoe</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Bebidas ilimitadas con la cena</div>
+            <div class="h-incl-item"><span class="tick">✓</span>St Paul's Bay — ubicación práctica</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tarifas en régimen HB (media pensión) incluyendo bebidas ilimitadas en la cena. +€1,50/pers./noche contribución medioambiental (tope €15/adulto) pagadera en recepción. Disponibilidad sujeta a confirmación.</div></div>
+        </div>
+      </div>
+
+      <!-- VICTORIA HOTEL -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/the Victoria.jpg" alt="The Victoria Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">The Victoria Hotel</div>
+          <div class="h-card-loc">📍 Sliema — paseo marítimo</div>
+          <div class="h-card-desc">Hotel 4 estrellas elegante en Sliema, idealmente situado en el paseo marítimo. El suplemento HB incluye las bebidas con la cena — un régimen completo y cómodo para su grupo.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — individual (single)</div><div class="h-rate-note">Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€150/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — doble</div><div class="h-rate-note">Por persona · Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€88/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Suplemento cena (HB)</div><div class="h-rate-note">Bebidas incluidas con la cena</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€34/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Desayuno incluido (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Sliema — posición central &amp; paseo marítimo</div>
+            <div class="h-incl-item"><span class="tick">✓</span>HB con bebidas incluidas (+€34)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tarifas por persona por noche. El suplemento HB incluye las bebidas en la cena. +€1,50/pers./noche contribución medioambiental (tope €15/adulto). Disponibilidad sujeta a confirmación.</div></div>
+        </div>
+      </div>
+
+      <!-- SANTANA HOTEL -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/the Santana.jpg" alt="The Santana Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">The Santana Hotel</div>
+          <div class="h-card-loc">📍 St Paul's Bay</div>
+          <div class="h-card-desc">Hotel 4 estrellas en St Paul's Bay. El suplemento HB con bebidas ilimitadas (€224/pers.) sugiere un régimen todo incluido muy completo para las cenas — ideal para grupos que desean todo incluido por la noche.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — individual (single)</div><div class="h-rate-note">Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€86/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Habitación estándar — doble</div><div class="h-rate-note">Por persona · Desayuno incluido (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€54/noche</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Suplemento HB</div><div class="h-rate-note">Bebidas ilimitadas incluidas</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€224/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Desayuno incluido (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>St Paul's Bay — entorno costero</div>
+            <div class="h-incl-item"><span class="tick">✓</span>HB con bebidas ilimitadas (+€224)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Los precios son por persona y noche. Suplemento para media pensión con bebidas ilimitadas. +1,50 €/persona/noche de contribución medioambiental (con un límite máximo de 15 €/adulto). Disponibilidad sujeta a cambios.</div></div>
+        </div>
+      </div>
+
+    </div><!-- /hotel-cards-grid -->
+
+    <!-- ECO TAX NOTE -->
+    <div style="background:var(--parchment);border-radius:var(--radius);padding:16px 20px;margin-bottom:32px;border:0.5px solid var(--border);">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">⚠️ Contribución Medioambiental (Eco-tasa) — Ley Maltesa</div>
+      <div style="font-size:12px;color:#5C4A38;line-height:1.65;">A partir del 1 de junio de 2026, se cobra directamente en la recepción del hotel una contribución medioambiental de <strong>€1,50 por persona por noche</strong>, de conformidad con la legislación maltesa. Este impuesto tiene un límite máximo de <strong>€15,00 por adulto</strong> por estancia. No está incluido en las tarifas anteriores y es pagadero en el establecimiento.</div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div style="margin-top:20px;padding:20px 24px;background:var(--parchment);border-radius:10px;border:0.5px solid var(--border);">
+      <div style="font-family:var(--body);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:8px;">Notas y condiciones</div>
+      <div style="font-family:var(--body);font-size:11px;color:#5C4A38;line-height:1.7;">Todas las tarifas se expresan en euros (€) por persona por noche. Los precios son orientativos y están sujetos a cambios según la disponibilidad en el momento de la confirmación. No se ha realizado ninguna reserva en esta fase. Las disponibilidades se gestionan por orden de llegada. Colours of Malta se encarga de todas las reservas y la coordinación in situ.</div>
+    </div>
+
+  </div>
+</div>
+
+<div style="height:8px;background:var(--spectrum);"></div>
+<footer class="footer">
+  <div class="footer-wordmark">colours of malta</div>
+  <div class="footer-meta">Programa Malta · 31 marzo – 5 de abril de 2027</div>
+  <div class="footer-meta">cheryl@com.com.mt · +356 9989 6387</div>
+</footer>
+
+</div><!-- /tab-hotels -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="handleLbClick(event)">
+  <div class="lb-img-wrap">
+    <button class="lb-close" onclick="closeLightbox();event.stopPropagation()">✕</button>
+    <img id="lb-img" src="" alt="">
+  </div>
+  <div class="lb-caption" id="lb-caption"></div>
+  <div class="lb-nav-row">
+    <button class="lb-btn" id="lb-prev" onclick="lbNav(-1);event.stopPropagation()">← Ant</button>
+    <span class="lb-counter" id="lb-counter"></span>
+    <button class="lb-btn" id="lb-next" onclick="lbNav(1);event.stopPropagation()">Sig →</button>
+        
+  </div>
+</div>
+
+<script>
+function showTab(id){document.querySelectorAll('.page-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');var btn=document.querySelector('.nav-tab[onclick="showTab(\''+id+'\')"]');if(btn)btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+const NAV_OFFSET=66+8+46+20;
+const dayIds=['day1','day2','day3','day4','day5'];
+function updateActiveDay(){let current=dayIds[0];dayIds.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=NAV_OFFSET)current=id;});document.querySelectorAll('.day-link').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current);});}
+window.addEventListener('scroll',updateActiveDay,{passive:true});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-NAV_OFFSET,behavior:'smooth'});});});
+
+function toggleOvCoach(el){
+  el.classList.toggle('ov-open');
+  var sub = el.nextElementSibling;
+  if(sub && sub.classList.contains('ov-sub-list')){
+    sub.classList.toggle('ov-visible');
+  }
+}
+
+function toggleBanner(id){document.getElementById(id).classList.toggle('open');}
+function toggleExpand(btn){const card=btn.closest('.card, .option-pane');const panel=card?card.querySelector(':scope > .expanded'):null;if(!panel)return;const isOpen=panel.classList.contains('open');panel.classList.toggle('open',!isOpen);btn.classList.toggle('open',!isOpen);if(!isOpen){setTimeout(()=>{window.scrollTo({top:panel.getBoundingClientRect().top+window.scrollY-NAV_OFFSET-10,behavior:'smooth'});},60);}}
+function switchOpt(cardId,idx){const card=document.getElementById('card-'+cardId);card.querySelectorAll(':scope > .option-tabs > .option-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));card.querySelectorAll(':scope > .option-pane').forEach((p,i)=>p.classList.toggle('active',i===idx));}
+let lbImages=[],lbIndex=0;
+function openLightbox(images,idx,caption){lbImages=images;lbIndex=idx||0;document.getElementById('lb-caption').textContent=caption||'';document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';renderLb();}
+function renderLb(){const img=document.getElementById('lb-img');img.src=lbImages[lbIndex]||'';document.getElementById('lb-counter').textContent=lbImages.length>1?`${lbIndex+1} / ${lbImages.length}`:'';document.getElementById('lb-prev').style.visibility=lbIndex>0?'visible':'hidden';document.getElementById('lb-next').style.visibility=lbIndex<lbImages.length-1?'visible':'hidden';}
+function lbNav(dir){lbIndex=Math.max(0,Math.min(lbImages.length-1,lbIndex+dir));renderLb();}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function handleLbClick(e){if(e.target===document.getElementById('lightbox'))closeLightbox();}
+document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);});
+</script>
+</body>
+</html>
