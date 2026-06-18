@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programma Malta 2027 · Colours of Malta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:        #1A5A9A;
+  --blue-dark:   #0D3D7A;
+  --ink:         #1C1C1E;
+  --ink2:        #211C14;
+  --ink3:        #1A1510;
+  --limestone:   #F2EDE3;
+  --parchment:   #EDE5D4;
+  --warm-white:  #FDFAF6;
+  --stone:       #8B7D6B;
+  --stone-light: #C4B8A8;
+  --terra:       #C4622D;
+  --gold:        #C49A1A;
+  --green:       #16A34A;
+  --border:      rgba(139,125,107,0.2);
+  --shadow:      rgba(28,20,16,0.07);
+  --shadow-md:   rgba(28,20,16,0.13);
+  --display:     'Cormorant Garamond', Georgia, serif;
+  --body:        'DM Sans', system-ui, sans-serif;
+  --nav-h:       66px;
+  --strip-h:     8px;
+  --day-h:       46px;
+  --sticky-top:  calc(var(--nav-h) + var(--strip-h));
+  --radius:      10px;
+  --radius-lg:   14px;
+  --max-w:       1100px;
+  --spectrum: linear-gradient(90deg,
+    #1A5A9A 0%,#2E86AB 10%,#5BB8D4 20%,#A8D8E8 28%,
+    #C4E0B8 36%,#D4C98A 44%,#C49A1A 52%,#C4622D 60%,
+    #E8856A 68%,#D4A0B0 76%,#B08DC4 86%,#1A5A9A 100%);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--limestone);color:var(--ink);overflow-x:hidden;}
+.page-tab{display:none;}.page-tab.active{display:block;}
+
+/* TOPNAV */
+.topnav{position:sticky;top:0;z-index:200;height:var(--nav-h);background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 28px;gap:16px;}
+.nav-left{display:flex;align-items:center;gap:16px;}
+.com-wordmark{font-family:var(--display);font-size:17px;font-weight:300;color:#fff;letter-spacing:0.03em;}
+.com-wordmark strong{font-weight:600;}
+.com-tagline{font-size:9px;font-weight:400;letter-spacing:1.8px;text-transform:uppercase;color:var(--stone-light);margin-top:1px;}
+.nav-sep{width:1px;height:28px;background:rgba(255,255,255,0.15);}
+.agency-label{font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone-light);}
+.agency-name{font-size:13px;font-weight:500;color:#fff;margin-top:1px;}
+.nav-tabs{display:flex;gap:4px;}
+.nav-tab{background:none;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.7);font-family:var(--body);font-size:11px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;padding:7px 18px;border-radius:20px;cursor:pointer;transition:all .2s;}
+.nav-tab:hover{background:rgba(255,255,255,0.08);color:#fff;}
+.nav-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+
+/* SPECTRUM */
+.spectrum-strip{position:sticky;top:var(--nav-h);z-index:199;height:var(--strip-h);background:var(--spectrum);}
+
+/* HERO */
+.hero{position:relative;height:90vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,14,8,0.82) 0%,rgba(20,14,8,0.28) 55%,transparent 100%);}
+.hero-content{position:relative;z-index:2;padding:56px 48px;max-width:var(--max-w);margin:0 auto;width:100%;}
+.hero-badge{display:inline-block;background:var(--blue);color:#fff;font-size:10px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:20px;}
+.hero-title{font-family:var(--display);font-size:clamp(36px,5vw,64px);font-weight:300;color:#fff;line-height:1.12;margin-bottom:32px;}
+.hero-title strong{color:var(--gold);}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
+.hstat{display:flex;flex-direction:column;gap:2px;}
+.hstat-n{font-family:var(--display);font-size:28px;font-weight:500;color:#fff;}
+.hstat-l{font-size:9px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+
+/* DESTINATION */
+.dest-section{background:var(--warm-white);padding:72px 48px;}
+.dest-top{display:grid;grid-template-columns:1fr 380px;gap:56px;max-width:var(--max-w);margin:0 auto;align-items:start;}
+.dest-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.dest-title{font-family:var(--display);font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:20px;}
+.dest-title em{color:var(--terra);font-style:italic;}
+.dest-body{font-size:14px;line-height:1.75;color:#4A3C2E;margin-bottom:24px;}
+.dest-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.dest-tag{background:var(--limestone);border:0.5px solid var(--border);color:var(--stone);font-size:10px;font-weight:500;padding:5px 12px;border-radius:20px;}
+.dest-right img{width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg);display:block;}
+
+/* FACTS */
+.facts-section{background:var(--ink2);padding:64px 48px 0;}
+.facts-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;max-width:var(--max-w);margin:0 auto;padding-bottom:48px;}
+.facts-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.facts-heading{font-family:var(--display);font-size:clamp(26px,3vw,40px);font-weight:400;color:#fff;line-height:1.2;margin-bottom:16px;}
+.facts-heading em{color:var(--gold);font-style:italic;}
+.facts-sub{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);}
+.facts-right{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.facts-col-label{font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:12px;}
+.lbl-clim{color:var(--gold);}
+.lbl-fact{color:var(--stone-light);}
+.clim-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+.clim-key{font-size:11px;color:rgba(255,255,255,0.55);}
+.clim-right{text-align:right;}
+.clim-val{font-size:13px;font-weight:600;color:#fff;margin-right:4px;}
+.clim-note{font-size:10px;color:rgba(255,255,255,0.4);}
+.fact-row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+.fact-key{font-size:11px;color:rgba(255,255,255,0.55);}
+.fact-val{font-size:11px;color:#fff;font-weight:500;text-align:right;}
+.malta-strip{border-top:0.5px solid rgba(255,255,255,0.08);padding:28px 0;}
+.malta-strip-inner{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;max-width:var(--max-w);margin:0 auto;}
+.ms-item{text-align:center;}
+.ms-key{font-size:8.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--stone-light);margin-bottom:4px;}
+.ms-val{font-size:14px;font-weight:600;color:#fff;}
+.ms-sub{font-size:9px;color:rgba(255,255,255,0.4);margin-top:2px;}
+
+/* OVERVIEW */
+.overview-section{background:var(--warm-white);padding:64px 48px;}
+.overview-inner{max-width:var(--max-w);margin:0 auto;}
+.section-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.section-title{font-family:var(--display);font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--ink);margin-bottom:32px;}
+.ov-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.ov{width:100%;border-collapse:collapse;min-width:700px;}
+table.ov thead th{padding:10px 14px;background:var(--ink);color:#fff;font-size:10px;font-weight:500;text-align:left;white-space:nowrap;}
+table.ov thead th .dh-num{display:block;font-family:var(--display);font-size:22px;font-weight:300;color:var(--gold);}
+table.ov thead th .dh-date{display:block;font-size:9px;font-weight:400;letter-spacing:0.5px;color:rgba(255,255,255,0.5);margin-top:2px;}
+table.ov thead th .dh-name{display:block;font-size:11px;font-weight:600;color:#fff;margin-top:2px;}
+table.ov tbody td{padding:8px 10px;vertical-align:top;border-bottom:0.5px solid var(--border);}
+.slot-label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--stone);white-space:nowrap;background:var(--limestone)!important;}
+.cell-stack{display:flex;flex-direction:column;gap:4px;}
+.ov-cell{display:block;padding:7px 10px;border-radius:6px;text-decoration:none;transition:opacity .15s;}
+.ov-cell:hover{opacity:.85;}
+.ov-cell-type{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:0.7;margin-bottom:2px;}
+.ov-cell-name{font-size:11px;font-weight:600;color:var(--ink);line-height:1.3;}
+.ov-cell-note{font-size:10px;opacity:0.65;margin-top:1px;}
+.ov-act{background:#DBEAFE;}.ov-act .ov-cell-type{color:var(--blue);}
+.ov-rest{background:#FEE2D5;}.ov-rest .ov-cell-type{color:var(--terra);}
+.ov-trf{background:#F0ECE6;}.ov-trf .ov-cell-type{color:var(--stone);}
+.ov-exp{background:#FEF3C7;}.ov-exp .ov-cell-type{color:#92700A;}
+.ov-meet{background:#D1FAE5;}.ov-meet .ov-cell-type{color:var(--green);}
+.ov-empty{color:var(--stone);font-size:11px;padding:7px 10px;font-style:italic;opacity:0.5;}
+
+/* DAY STRIP */
+.day-strip{position:sticky;top:calc(var(--nav-h) + var(--strip-h));z-index:150;background:var(--parchment);border-bottom:0.5px solid var(--border);display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;height:var(--day-h);}
+.day-link{display:flex;align-items:center;padding:0 22px;font-size:11px;font-weight:500;letter-spacing:0.5px;color:var(--stone);text-decoration:none;white-space:nowrap;border-right:0.5px solid var(--border);transition:all .15s;}
+.day-link:hover{background:var(--limestone);color:var(--ink);}
+.day-link.active{background:var(--blue);color:#fff;}
+
+/* PAGE & DAY SECTIONS */
+.page{max-width:var(--max-w);margin:0 auto;padding:40px 24px 80px;}
+.day-section{padding-top:24px;}
+.day-divider{margin:48px 0;}.day-divider hr{border:none;border-top:0.5px solid var(--border);}
+.card-stack{display:flex;flex-direction:column;gap:24px;margin-top:24px;}
+
+/* DAY BANNER */
+.day-banner{background:var(--warm-white);border-radius:var(--radius-lg);border:0.5px solid var(--border);overflow:hidden;margin-bottom:4px;}
+.day-banner-top{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;cursor:pointer;transition:background .15s;}
+.day-banner-top:hover{background:var(--limestone);}
+.dbt-left{display:flex;align-items:center;gap:14px;}
+.day-num-box{width:38px;height:38px;background:var(--blue);color:#fff;font-family:var(--display);font-size:20px;font-weight:300;display:flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0;}
+.day-title{font-family:var(--display);font-size:18px;font-weight:400;color:var(--ink);}
+.day-title em{color:var(--terra);font-style:italic;}
+.day-meta{font-size:11px;color:var(--stone);margin-top:2px;}
+.dbt-toggle svg{width:20px;height:20px;stroke:var(--stone);transition:transform .25s;}
+.day-banner.open .dbt-toggle svg{transform:rotate(180deg);}
+.day-schedule{display:none;grid-template-columns:repeat(4,1fr);gap:0;border-top:0.5px solid var(--border);}
+.day-banner.open .day-schedule{display:grid;}
+.sched-item{padding:14px 18px;border-right:0.5px solid var(--border);}
+.sched-item:last-child{border-right:none;}
+.si-time{font-size:10px;font-weight:600;letter-spacing:0.8px;color:var(--stone);margin-bottom:4px;}
+.si-type{font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:10px;display:inline-block;margin-bottom:4px;}
+.si-type.trf{background:#F0ECE6;color:var(--stone);}
+.si-type.act{background:#DBEAFE;color:var(--blue);}
+.si-type.rest{background:#FEE2D5;color:var(--terra);}
+.si-type.exp{background:#FEF3C7;color:#92700A;}
+.si-type.meet{background:#D1FAE5;color:var(--green);}
+.si-name{font-size:12px;font-weight:600;color:var(--ink);line-height:1.35;}
+.si-note{font-size:10px;color:var(--stone);margin-top:2px;}
+
+/* CARD */
+.card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 2px 12px var(--shadow);border:0.5px solid var(--border);}
+.card-img{position:relative;height:420px;overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,12,6,0.75) 0%,transparent 55%);}
+.img-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;}
+.ov-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+.ov-badge.activity{background:rgba(26,90,154,0.9);color:#fff;}
+.ov-badge.restaurant{background:rgba(196,98,45,0.9);color:#fff;}
+.ov-badge.transfer{background:rgba(139,125,107,0.9);color:#fff;}
+.ov-badge.experience{background:rgba(196,154,26,0.9);color:#fff;}
+.ov-badge.gala{background:rgba(80,40,120,0.9);color:#fff;}
+.ov-badge.meeting{background:rgba(22,163,74,0.9);color:#fff;}
+.ov-badge.option{background:rgba(139,125,107,0.7);color:#fff;}
+.img-title{font-family:var(--display);font-size:clamp(22px,2.8vw,34px);font-weight:400;color:#fff;line-height:1.2;margin-bottom:6px;}
+.img-meta{font-size:12px;color:rgba(255,255,255,0.72);}
+.card-body{padding:20px 28px 16px;}
+.atm-line{font-family:var(--display);font-size:16px;font-style:italic;color:var(--stone);line-height:1.5;margin-bottom:12px;}
+.incl-line{font-size:11px;color:var(--stone);margin-bottom:16px;line-height:1.6;}
+.incl-sep{margin:0 8px;opacity:0.4;}
+.expand-btn{display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--border);color:var(--blue);font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;padding:8px 18px;border-radius:20px;cursor:pointer;transition:all .2s;}
+.expand-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.expand-btn svg{width:16px;height:16px;transition:transform .25s;}
+.expand-btn.open svg{transform:rotate(180deg);}
+
+/* EXPANDED */
+.expanded{display:none;border-top:0.5px solid var(--border);}
+.expanded.open{display:block;}
+
+/* PHOTO GRID B */
+.photo-grid-b{display:grid;grid-template-columns:2fr 1fr;gap:4px;height:500px;overflow:hidden;}
+.pgb-main,.pgb-s{position:relative;overflow:hidden;cursor:pointer;}
+.pgb-stack{display:grid;grid-template-rows:1fr 1fr;gap:4px;}
+.pgb-main img,.pgb-s img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;}
+.pgb-main:hover img,.pgb-s:hover img{transform:scale(1.04);}
+.photo-hover-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .2s;display:flex;align-items:center;justify-content:center;}
+.pgb-main:hover .photo-hover-overlay,.pgb-s:hover .photo-hover-overlay{background:rgba(0,0,0,0.25);}
+.ph-zoom{font-size:22px;opacity:0;transition:opacity .2s;}
+.pgb-main:hover .ph-zoom,.pgb-s:hover .ph-zoom{opacity:1;}
+.photo-cap{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.55));font-size:10px;color:rgba(255,255,255,0.85);}
+.photo-count-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.55);color:#fff;font-size:9px;font-weight:600;padding:3px 8px;border-radius:10px;}
+
+/* EXP CONTENT */
+.exp-content{padding:28px;}
+.exp-label{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;margin-top:20px;}
+.exp-label:first-child{margin-top:0;}
+.exp-narrative{font-size:13px;line-height:1.75;color:#4A3C2E;margin-bottom:6px;}
+.exp-divider{height:0.5px;background:var(--border);margin:20px 0;}
+.fact-list{display:flex;flex-direction:column;gap:8px;margin-bottom:4px;}
+.efact{display:grid;grid-template-columns:22px 140px 1fr;gap:6px;align-items:baseline;padding:6px 0;border-bottom:0.5px solid var(--border);}
+.efi{font-size:13px;}
+.efk{font-size:11px;font-weight:600;color:var(--stone);}
+.efv{font-size:12px;color:var(--ink);}
+.incl-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin-bottom:4px;}
+.incl-item{display:flex;align-items:baseline;gap:7px;font-size:12px;color:var(--ink);}
+.tick{color:var(--green);font-weight:700;}
+.cross{color:var(--stone-light);font-weight:700;}
+.ent-badge{display:inline-block;background:var(--parchment);border:0.5px solid var(--border);font-size:10px;font-weight:600;color:var(--stone);padding:3px 10px;border-radius:10px;margin-bottom:8px;}
+.options-note{font-size:12px;color:#5C4A38;background:var(--parchment);border-radius:8px;padding:10px 14px;border-left:3px solid var(--gold);}
+
+/* OPTION CARD */
+.option-tabs{display:grid;border-bottom:0.5px solid var(--border);}
+.option-tab{background:var(--limestone);border:none;padding:16px 20px;text-align:left;cursor:pointer;transition:background .15s;border-right:0.5px solid var(--border);}
+.option-tab:last-child{border-right:none;}
+.option-tab.active{background:#fff;}
+.opt-tag{display:block;font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--stone);margin-bottom:4px;}
+.opt-name{display:block;font-family:var(--display);font-size:16px;font-weight:500;color:var(--ink);}
+.opt-sub{display:block;font-size:10px;color:var(--stone);margin-top:3px;}
+.option-pane{display:none;}.option-pane.active{display:block;}
+
+/* DEPARTURE */
+.dep-section{background:var(--ink);padding:64px 48px;text-align:center;}
+.dep-inner{max-width:600px;margin:0 auto;}
+.dep-icon{font-size:36px;margin-bottom:16px;}
+.dep-title{font-family:var(--display);font-size:32px;font-weight:300;color:#fff;margin-bottom:12px;}
+.dep-body{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.65);margin-bottom:24px;}
+.dep-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.dep-chip{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);font-size:11px;font-weight:500;padding:6px 16px;border-radius:20px;}
+
+/* CONTACT */
+.contact-section{background:var(--limestone);padding:64px 48px;}
+.contact-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start;}
+.contact-overline{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.contact-title{font-family:var(--display);font-size:clamp(24px,3vw,38px);font-weight:400;color:var(--ink);margin-bottom:10px;}
+.contact-sub{font-size:13px;line-height:1.7;color:#5C4A38;}
+.profile-card{display:flex;gap:24px;align-items:flex-start;background:#fff;border-radius:var(--radius-lg);padding:24px;border:0.5px solid var(--border);min-width:320px;}
+.profile-photo{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--parchment);}
+.profile-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.profile-name{font-family:var(--display);font-size:20px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.profile-role{font-size:11px;color:var(--stone);margin-bottom:10px;}
+.profile-sep{height:0.5px;background:var(--border);margin-bottom:12px;}
+.contact-links{display:flex;flex-direction:column;gap:8px;}
+.contact-link{display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:8px;text-decoration:none;transition:opacity .15s;}
+.contact-link:hover{opacity:.85;}
+.contact-link.wa{background:#25D366;color:#fff;}
+.contact-link.em{background:var(--limestone);color:var(--ink);border:0.5px solid var(--border);}
+.contact-link svg{width:16px;height:16px;flex-shrink:0;}
+.cl-label{display:block;font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;opacity:0.75;}
+.cl-val{display:block;font-size:12px;font-weight:600;}
+
+/* FOOTER */
+.footer{background:var(--ink3);padding:24px 48px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;}
+.footer-wordmark{font-family:var(--display);font-size:18px;font-weight:300;color:rgba(255,255,255,0.6);letter-spacing:0.05em;}
+.footer-meta{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;flex-direction:column;gap:12px;}
+.lightbox.open{display:flex;}
+.lb-img-wrap{position:relative;max-width:90vw;max-height:80vh;}
+.lb-img-wrap img{max-width:90vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px;}
+.lb-close{position:absolute;top:-14px;right:-14px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:16px;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lb-caption{color:rgba(255,255,255,0.65);font-size:12px;max-width:600px;text-align:center;}
+.lb-nav-row{display:flex;align-items:center;gap:20px;}
+.lb-btn{background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.25);color:#fff;font-size:12px;font-weight:500;padding:7px 18px;border-radius:20px;cursor:pointer;transition:background .15s;}
+.lb-btn:hover{background:rgba(255,255,255,0.22);}
+.lb-counter{color:rgba(255,255,255,0.5);font-size:11px;min-width:40px;text-align:center;}
+
+/* HOTEL TAB */
+.hotel-page{background:var(--warm-white);min-height:100vh;padding:64px 48px;}
+.hotel-page-inner{max-width:var(--max-w);margin:0 auto;}
+.hotel-pg-title{font-family:var(--display);font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--ink);margin-bottom:8px;}
+.hotel-pg-sub{font-size:14px;color:var(--stone);margin-bottom:40px;line-height:1.6;}
+.comp-wrap{overflow-x:auto;margin-bottom:56px;}
+table.comp{width:100%;border-collapse:collapse;min-width:680px;}
+table.comp th{background:var(--ink);color:#fff;font-size:11px;font-weight:500;padding:12px 18px;text-align:left;}
+table.comp td{padding:10px 18px;border-bottom:0.5px solid var(--border);font-size:12px;vertical-align:top;}
+.comp-row-label{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--stone);background:var(--limestone)!important;white-space:nowrap;}
+.comp-val{font-size:12px;color:var(--ink);}
+.comp-rate{font-size:15px;font-weight:700;color:var(--blue);}
+.comp-note{font-size:10px;color:var(--stone);margin-top:2px;}
+.best-val{background:#EFF6FF!important;}
+.best-badge{display:inline-block;background:var(--blue);color:#fff;font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:4px;}
+.top-badge{display:inline-block;background:var(--gold);color:var(--ink);font-size:8px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:4px;}
+.hotel-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:40px;}
+.h-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;border:0.5px solid var(--border);box-shadow:0 2px 12px var(--shadow);}
+.h-card-img{position:relative;height:220px;overflow:hidden;}
+.h-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.h-card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.4),transparent);}
+.h-card-stars{position:absolute;bottom:12px;left:16px;font-size:14px;color:var(--warm-white);}
+.h-card-body{padding:20px 22px;}
+.h-card-name{font-family:var(--display);font-size:22px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.h-card-loc{font-size:11px;color:var(--stone);margin-bottom:8px;}
+.h-card-desc{font-size:12px;line-height:1.65;color:#5C4A38;margin-bottom:16px;}
+.h-card-rates{border-top:0.5px solid var(--border);padding-top:14px;margin-bottom:14px;}
+.h-rate-row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:0.5px solid var(--border);}
+.h-rate-row:last-child{border-bottom:none;}
+.h-rate-label{font-size:11px;font-weight:600;color:var(--ink);}
+.h-rate-note{font-size:10px;color:var(--stone);margin-top:1px;}
+.h-rate-val{font-size:14px;font-weight:700;color:var(--blue);}
+.h-card-incl{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;}
+.h-incl-item{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--ink);}
+.h-card-disclaimer{border-top:0.5px solid var(--border);padding-top:10px;}
+.h-disc-text{font-size:10px;color:var(--stone);line-height:1.5;font-style:italic;}
+
+/* ADVICE BOX */
+.advice-box{background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:32px;}
+.advice-box-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#92700A;margin-bottom:6px;}
+.advice-box-text{font-size:13px;line-height:1.65;color:#78500A;}
+
+@media(max-width:768px){
+  .dest-top,.facts-inner,.contact-inner{grid-template-columns:1fr;}
+  .dest-right img{height:220px;}
+  .hotel-cards-grid{grid-template-columns:1fr;}
+  .malta-strip-inner{grid-template-columns:repeat(3,1fr);}
+  .facts-right{grid-template-columns:1fr;}
+  .hero-content{padding:32px 24px;}
+  .dest-section,.facts-section,.overview-section,.hotel-page,.contact-section,.dep-section{padding:40px 24px;}
+  .page{padding:24px 16px 60px;}
+}
+
+/* OVERVIEW EXPAND */
+.ov-coach{position:relative;user-select:none;display:flex;align-items:flex-start;gap:6px;cursor:pointer;}
+.ov-coach-text{flex:1;min-width:0;}
+.ov-coach-toggle{flex-shrink:0;width:18px;height:18px;border-radius:4px;background:rgba(26,90,154,0.15);border:none;cursor:pointer;font-size:10px;line-height:18px;text-align:center;color:var(--blue);transition:background .15s,transform .2s;padding:0;margin-top:1px;}
+.ov-coach-toggle:hover{background:rgba(26,90,154,0.28);}
+.ov-coach.ov-open .ov-coach-toggle{transform:rotate(180deg);}
+.ov-sub-list{display:none;margin-top:4px;display:none;flex-direction:column;gap:3px;}
+.ov-sub-list.ov-visible{display:flex;}
+.ov-sub-item{display:block;padding:5px 8px;border-radius:5px;background:#EFF6FF;text-decoration:none;transition:opacity .15s;}
+.ov-sub-item:hover{opacity:.8;}
+.ov-sub-item .ov-cell-type{font-size:7.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);opacity:.8;margin-bottom:1px;}
+.ov-sub-item .ov-cell-name{font-size:10.5px;font-weight:600;color:var(--ink);line-height:1.3;}
+.ov-opt-item{background:#FEF9EC;}
+.ov-opt-item .ov-cell-type{color:#92700A;}
+.ov-trf-item{background:#F0ECE6;}
+.ov-trf-item .ov-cell-type{color:var(--stone);}
+
+</style>
+</head>
+<body>
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-left">
+    <div>
+      <div class="com-wordmark">colours of <strong>malta</strong></div>
+      <div class="com-tagline">travel &amp; incentives</div>
+    </div>
+    <div class="nav-sep"></div>
+    <div>
+      <div class="agency-label">Presentato a</div>
+      <div class="agency-name">Comunicando Eventi</div>
+    </div>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('prog')">Programma</button>
+    <button class="nav-tab" onclick="showTab('hotels')">Hotel</button>
+  </div>
+</nav>
+<div class="spectrum-strip"></div>
+
+<!-- PROGRAMME TAB -->
+<div id="tab-prog" class="page-tab active">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/introduction to malta.jpg" alt="Malta" onerror="this.style.display='none'">
+  </div>
+  <div class="hero-content">
+    <span class="hero-badge">Colours of Malta DMC &nbsp;·&nbsp; Programma di una giornata</span>
+    <h1 class="hero-title">Una Giornata a Malta<br><strong>L'Isola dei Cavalieri</strong></h1>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-n">1</span><span class="hstat-l">Giornata</span></div>
+      <div class="hstat"><span class="hstat-n">Gozo</span><span class="hstat-l">Escursione</span></div>
+      <div class="hstat"><span class="hstat-n">Buggy / Tuk Tuk</span><span class="hstat-l">Attività</span></div>
+      <div class="hstat"><span class="hstat-n">Gala</span><span class="hstat-l">Cena dei Cavalieri</span></div>
+      <div class="hstat"><span class="hstat-n">30.01 · 06.02</span><span class="hstat-l">Date possibili (sab.)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATION -->
+<section class="dest-section">
+  <div class="dest-top">
+    <div class="dest-left">
+      <div class="dest-overline">La Destinazione</div>
+      <h2 class="dest-title">Malta — <em>tre isole, tremila anni</em> di storia</h2>
+      <p class="dest-body">Situata nel cuore del Mediterraneo, Malta è un gioiello insulare dove ogni pietra racconta una storia. Dai templi megalitici di 5.500 anni fa ai palazzi barocchi edificati dai Cavalieri di San Giovanni, l'isola offre una concentrazione di patrimonio senza pari in Europa.</p>
+      <p class="dest-body">La Valletta, capitale Patrimonio Mondiale UNESCO, è una delle capitali più piccole dell'Unione Europea ma anche una delle più ricche di monumenti. Mdina, l'antica capitale medievale conosciuta come "la Città del Silenzio", le Tre Città dei Cavalieri, le cattedrali barocche e l'isola sorella di Gozo ne fanno una destinazione ideale per un incentive all'insegna della storia, del gusto e dell'avventura.</p>
+      <div class="dest-tags">
+        <span class="dest-tag">🏛️ UNESCO — La Valletta</span>
+        <span class="dest-tag">✈️ ~2h dall'Italia</span>
+        <span class="dest-tag">🇪🇺 Unione Europea</span>
+        <span class="dest-tag">💶 Euro</span>
+        <span class="dest-tag">🗣️ Inglese · Maltese · Italiano diffuso</span>
+        <span class="dest-tag">☀️ Inverno mite</span>
+      </div>
+    </div>
+    <div class="dest-right">
+      <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/INTRODUCTION%20TO%20MALTA%202ND%20PICTURE%20(WITH%20INFORMATION).jpg" alt="Malta" onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<!-- FACTS -->
+<section class="facts-section">
+  <div class="facts-inner">
+    <div class="facts-left">
+      <div class="facts-overline">Malta a Gennaio–Febbraio</div>
+      <div class="facts-heading">Inverno mite<br>e luce<br><em>mediterranea</em></div>
+      <div class="facts-sub">Fine gennaio e inizio febbraio regalano un inverno dolce: temperature gradevoli tra 10 e 16°C, isola tranquilla e siti visitabili in totale serenità, senza l'affollamento estivo. Il clima mite del Mediterraneo rende ideali sia le visite culturali sia le attività all'aperto.</div>
+    </div>
+    <div class="facts-right">
+      <div>
+        <div class="facts-col-label lbl-clim">Clima</div>
+        <div class="clim-row"><div class="clim-key">🌡️ Temp. max.</div><div class="clim-right"><span class="clim-val">16°C</span><span class="clim-note">gradevole</span></div></div>
+        <div class="clim-row"><div class="clim-key">🌡️ Temp. min.</div><div class="clim-right"><span class="clim-val">10°C</span><span class="clim-note">notti fresche</span></div></div>
+        <div class="clim-row"><div class="clim-key">🌊 Mare</div><div class="clim-right"><span class="clim-val">16°C</span><span class="clim-note">inverno</span></div></div>
+        <div class="clim-row"><div class="clim-key">☀️ Sole</div><div class="clim-right"><span class="clim-val">6h</span><span class="clim-note">al giorno</span></div></div>
+        <div class="clim-row"><div class="clim-key">🌧️ Pioggia</div><div class="clim-right"><span class="clim-val">Occasionale</span><span class="clim-note">brevi rovesci</span></div></div>
+      </div>
+      <div class="facts-col-right">
+        <div class="facts-col-label lbl-fact">Informazioni pratiche</div>
+        <div class="fact-row"><div class="fact-key">✈️ Volo</div><div class="fact-val">~2h dall'Italia</div></div>
+        <div class="fact-row"><div class="fact-key">🗣️ Lingua</div><div class="fact-val">Inglese / Maltese</div></div>
+        <div class="fact-row"><div class="fact-key">💶 Moneta</div><div class="fact-val">Euro (€)</div></div>
+        <div class="fact-row"><div class="fact-key">📍 Capitale</div><div class="fact-val">La Valletta</div></div>
+        <div class="fact-row"><div class="fact-key">🇪🇺 Status</div><div class="fact-val">UE — Area Schengen</div></div>
+        <div class="fact-row"><div class="fact-key">🏨 Soggiorno</div><div class="fact-val">Malta</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="malta-strip">
+    <div class="malta-strip-inner">
+      <div class="ms-item"><div class="ms-key">Capitale</div><div class="ms-val">La Valletta</div><div class="ms-sub">UNESCO 1980</div></div>
+      <div class="ms-item"><div class="ms-key">Superficie</div><div class="ms-val">316 km²</div><div class="ms-sub">3 isole</div></div>
+      <div class="ms-item"><div class="ms-key">Popolazione</div><div class="ms-val">525.000</div><div class="ms-sub">ab.</div></div>
+      <div class="ms-item"><div class="ms-key">Storia</div><div class="ms-val">5.500 anni</div><div class="ms-sub">templi megalitici</div></div>
+      <div class="ms-item"><div class="ms-key">Cavalieri</div><div class="ms-val">1530–1798</div><div class="ms-sub">Ordine di San Giovanni</div></div>
+      <div class="ms-item"><div class="ms-key">Clima</div><div class="ms-val">300 g/anno</div><div class="ms-sub">di sole</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME INTRO -->
+<section class="overview-section" id="overview">
+  <div class="overview-inner">
+    <div class="section-overline">Il programma della giornata</div>
+    <div class="section-title">Mattina a Gozo &amp; Gala Dinner dei Cavalieri</div>
+    <p class="dest-body" style="max-width:760px;">Una giornata completa: al mattino l'escursione sull'isola di Gozo — tra avventura, paesaggio e gastronomia — e alla sera la cena di gala, con quattro proposte di location esclusive ispirate al tema dei Cavalieri di Malta. La giornata può svolgersi sabato 30 gennaio o sabato 6 febbraio 2027.</p>
+  </div>
+</section>
+
+<!-- DAY STRIP -->
+<div class="day-strip">
+  <a class="day-link active" href="#day-gozo">Giornata a Gozo</a>
+  <a class="day-link" href="#day-gala">Gala Dinner — Tema Cavalieri</a>
+</div>
+
+<!-- DAY — GOZO -->
+<div class="day-section" id="day-gozo">
+  <div class="day-banner open" id="banner-day-gozo">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day-gozo')">
+      <div class="dbt-left">
+        <div class="day-num-box">G</div>
+        <div>
+          <div class="day-title">Gozo <em>— Avventura &amp; Sapori</em></div>
+          <div class="day-meta">Giornata intera · Buggy / Tuk Tuk · pranzo &amp; aperitivo</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(4,1fr);">
+      <div class="sched-item"><div class="si-time">Mattina</div><div class="si-type act">Attività</div><div class="si-name">Tour di Gozo in Buggy / Tuk Tuk</div><div class="si-note">guida inclusa</div></div>
+       <div class="sched-item"><div class="si-time">Pomeriggio</div><div class="si-type exp">Facoltativo</div><div class="si-name">Aperitivo privato alle Saline</div><div class="si-note">su richiesta</div></div>
+      <div class="sched-item"><div class="si-time">Mezzogiorno</div><div class="si-type rest">Pranzo</div><div class="si-name">Ta' Frenċ <em>o</em> Country Terrace</div><div class="si-note">2 opzioni</div></div>
+      <div class="sched-item"><div class="si-time">Sera</div><div class="si-type meet">Meeting</div><div class="si-name">Rientro in hotel &amp; riunione</div><div class="si-note">in struttura</div></div>
+    </div>
+  </div>
+  <div class="card-stack">
+
+    <!-- BUGGY / TUK TUK -->
+    <div class="card" id="card-buggy">
+      <script>window.gzbPhotos=[
+        "https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/gozo.jpg",
+        "https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/gozo%20buggy.jpg",
+        "https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/tuktuk.webp",
+        
+      ];</script>
+      <div class="photo-grid-b" style="height:700px;">
+        <div class="pgb-main" onclick="openLightbox(window.gzbPhotos,0,'Tour di Gozo in Buggy / Tuk Tuk')">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/gozo.jpg" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/gozo.jpg'">
+          <div class="photo-hover-overlay"><span class="ph-zoom">🔍</span></div>
+          <div class="img-grad"></div>
+          <div class="img-overlay">
+            <div class="ov-badge activity">Attività · Mattina</div>
+            <div class="img-title">Tour di Gozo in Buggy / Tuk Tuk</div>
+            <div class="img-meta">Esplorazione guidata dell'isola verde · guida inclusa</div>
+          </div>
+        </div>
+        <div class="pgb-stack">
+          <div class="pgb-s" onclick="openLightbox(window.gzbPhotos,1,'Tour di Gozo in Buggy / Tuk Tuk')">
+            <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/gozo buggy.jpg" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/gozo buggy.jpg'">
+            <div class="photo-hover-overlay"><span class="ph-zoom">🔍</span></div>
+          </div>
+          <div class="pgb-s" onclick="openLightbox(window.gzbPhotos,2,'Tour di Gozo in Buggy / Tuk Tuk')">
+            <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/tuktuk.webp" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/tuktuk.webp'">
+            <div class="photo-hover-overlay"><span class="ph-zoom">🔍</span></div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Gozo a cielo aperto — campagna, scogliere e villaggi senza tempo, vissuti dal vivo a bordo di un buggy.&nbsp;»</div>
+        <div class="incl-line">Tour panoramico dell'isola<span class='incl-sep'>·</span>Buggy o Tuk Tuk<span class='incl-sep'>·</span>Accompagnatore / guida</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">L'esperienza</div>
+          <div class="exp-narrative">Un modo divertente e diverso di scoprire <strong>Gozo</strong>: a bordo di buggy o tuk tuk, il gruppo attraversa la campagna, i borghi e i panorami costieri dell'isola — dalla Cittadella di Victoria alle baie di Xlendi e Dwejra. Un'attività ideale come momento di team building e di scoperta.</div>
+          <div class="exp-label">Dettagli</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">🚙</span><span class="efk">Mezzi</span><span class="efv">Buggy o Tuk Tuk</span></div>
+            <div class="efact"><span class="efi">🧭</span><span class="efk">Formula</span><span class="efv">Tour guidato dell'isola</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Durata</span><span class="efv">Mattina</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- APERITIVO SALINE (FACOLTATIVO) -->
+    <div class="card" id="card-saline">
+      <div class="card-img" style="height:700px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/SALT PANS.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge experience">Esperienza · Facoltativa</div>
+          <div class="img-title">Aperitivo privato alle Saline</div>
+          <div class="img-meta">Salt Pans di Gozo · al tramonto · su richiesta</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Un aperitivo esclusivo sulle storiche saline scavate nella roccia — un momento sospeso tra mare e cielo.&nbsp;»</div>
+        <div class="incl-line">Aperitivo privato<span class='incl-sep'>·</span>Allestimento alle saline (Salt Pans)<span class='incl-sep'>·</span>Opzione facoltativa</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Dettagli</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Luogo</span><span class="efv">Saline di Gozo (Xwejni Salt Pans)</span></div>
+            <div class="efact"><span class="efi">🥂</span><span class="efk">Formato</span><span class="efv">Aperitivo privato allestito</span></div>
+            <div class="efact"><span class="efi">✨</span><span class="efk">Opzione</span><span class="efv">Facoltativa — su richiesta</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRANZO — 2 OPZIONI -->
+    <div class="card" id="card-pranzo">
+      <div class="option-tabs" style="grid-template-columns:repeat(2,1fr);">
+        <button class="option-tab active" onclick="switchOpt('pranzo',0)"><span class="opt-tag">Opzione 1</span><span class="opt-name">Ta' Frenċ</span><span class="opt-sub">Ristorante d'eccellenza, campagna gozitana</span></button>
+        <button class="option-tab" onclick="switchOpt('pranzo',1)"><span class="opt-tag">Opzione 2</span><span class="opt-name">Country Terrace</span><span class="opt-sub">Terrazza panoramica, Mġarr</span></button>
+      </div>
+      <div class="option-pane active">
+        <div class="card-img" style="height:700px;">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/tafrenc4.jpg" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/tafrenc4.jpg'">
+          <div class="img-grad"></div>
+          <div class="img-overlay">
+            <div class="ov-badge restaurant">Pranzo · Opzione 1</div>
+            <div class="img-title">Ta' Frenċ</div>
+            <div class="img-meta">Ristorante d'eccellenza · campagna gozitana</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="atm-line">«&nbsp;Ta' Frenċ — uno degli indirizzi gastronomici più celebrati di Malta, in un casale di campagna restaurato.&nbsp;»</div>
+          <div class="incl-line">Cucina raffinata maltese e mediterranea<span class='incl-sep'>·</span>Ambiente elegante<span class='incl-sep'>·</span>Ideale per gruppi</div>
+          <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+        </div>
+        <div class="expanded">
+          <div class="exp-content">
+            <div class="exp-label">Il ristorante</div>
+            <div class="exp-narrative">Ricavato da un antico casale di campagna sapientemente restaurato, <strong>Ta' Frenċ</strong> è considerato uno dei ristoranti più raffinati di Malta. La cucina unisce tradizione maltese e influenze mediterranee, con menù di gruppo personalizzabili — una cornice elegante e accogliente per un pranzo di rappresentanza.</div>
+            <div class="exp-label">Dettagli</div>
+            <div class="fact-list">
+              <div class="efact"><span class="efi">📍</span><span class="efk">Località</span><span class="efv">Campagna gozitana (zona Għarb)</span></div>
+              <div class="efact"><span class="efi">🍽️</span><span class="efk">Cucina</span><span class="efv">Maltese &amp; mediterranea, fine dining</span></div>
+              <div class="efact"><span class="efi">👥</span><span class="efk">Gruppi</span><span class="efv">Menù di gruppo su misura</span></div>
+              <div class="efact"><span class="efi">🏆</span><span class="efk">Note</span><span class="efv">Tra i ristoranti più premiati dell'isola</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="option-pane">
+        <div class="card-img" style="height:700px;">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/country terrace1.jpg" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/country terrace1.jpg'">
+          <div class="img-grad"></div>
+          <div class="img-overlay">
+            <div class="ov-badge restaurant">Pranzo · Opzione 2</div>
+            <div class="img-title">Country Terrace</div>
+            <div class="img-meta">Terrazza panoramica · porto di Mġarr</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="atm-line">«&nbsp;Country Terrace — terrazza affacciata sul porto di Mġarr, con vista sul mare e su Comino.&nbsp;»</div>
+          <div class="incl-line">Vista panoramica sul porto<span class='incl-sep'>·</span>Cucina del territorio<span class='incl-sep'>·</span>Atmosfera conviviale</div>
+          <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+        </div>
+        <div class="expanded">
+          <div class="exp-content">
+            <div class="exp-label">Il ristorante</div>
+            <div class="exp-narrative"><strong>Country Terrace</strong> domina il porto di Mġarr, punto d'arrivo del traghetto a Gozo. La sua ampia terrazza offre una vista spettacolare sul mare, su Comino e sulla costa maltese — l'ideale per un pranzo conviviale di gruppo con cucina del territorio.</div>
+            <div class="exp-label">Dettagli</div>
+            <div class="fact-list">
+              <div class="efact"><span class="efi">📍</span><span class="efk">Località</span><span class="efv">Mġarr, Gozo — sul porto</span></div>
+              <div class="efact"><span class="efi">🌅</span><span class="efk">Vista</span><span class="efv">Terrazza panoramica su porto &amp; Comino</span></div>
+              <div class="efact"><span class="efi">🍽️</span><span class="efk">Cucina</span><span class="efv">Piatti maltesi del territorio</span></div>
+              <div class="efact"><span class="efi">👥</span><span class="efk">Gruppi</span><span class="efv">Spazio adatto a gruppi</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- RIENTRO + MEETING -->
+    <div class="card" id="card-rientro">
+      <div class="card-img" style="height:700px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/GOZO main picture.jpg" onerror="this.style.display='none'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge meeting">Meeting · Sera</div>
+          <div class="img-title">Rientro in hotel &amp; riunione</div>
+          <div class="img-meta">Trasferimento privato · sessione di lavoro in struttura</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Rientro in hotel e riunione del gruppo — un momento dedicato al lavoro a chiusura della giornata.&nbsp;»</div>
+        <div class="incl-line">Trasferimento privato di rientro<span class='incl-sep'>·</span>Riunione / meeting in hotel</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">Dettagli</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">🚐</span><span class="efk">Trasferimento</span><span class="efv">Privato · traghetto Gozo → Malta incluso</span></div>
+            <div class="efact"><span class="efi">🏨</span><span class="efk">Meeting</span><span class="efv">Sala riunioni in hotel</span></div>
+            <div class="efact"><span class="efi">⏱️</span><span class="efk">Momento</span><span class="efv">Fine giornata, prima della gala</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class='day-divider'><hr></div>
+
+<!-- GALA DINNER -->
+<div class="day-section" id="day-gala">
+  <div class="day-banner open" id="banner-day-gala">
+    <div class="day-banner-top" onclick="toggleBanner('banner-day-gala')">
+      <div class="dbt-left">
+        <div class="day-num-box">★</div>
+        <div>
+          <div class="day-title">Gala Dinner <em>— La Notte dei Cavalieri</em></div>
+          <div class="day-meta">Quattro location esclusive a scelta · tema Cavalieri di Malta</div>
+        </div>
+      </div>
+      <div class="dbt-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="day-schedule" style="grid-template-columns:repeat(4,1fr);">
+      <div class="sched-item"><div class="si-time">Opzione 1</div><div class="si-type rest">Gala</div><div class="si-name">Sacra Infermeria (MCC)</div><div class="si-note">La Valletta</div></div>
+      <div class="sched-item"><div class="si-time">Opzione 2</div><div class="si-type rest">Gala</div><div class="si-name">Mdina by Night → Xara Lodge</div><div class="si-note">Mdina</div></div>
+      <div class="sched-item"><div class="si-time">Opzione 3</div><div class="si-type rest">Gala</div><div class="si-name">Limestone Heritage</div><div class="si-note">Siġġiewi</div></div>
+      <div class="sched-item"><div class="si-time">Opzione 4</div><div class="si-type rest">Gala</div><div class="si-name">Antica Tesoreria dei Cavalieri</div><div class="si-note">Casino Maltese</div></div>
+    </div>
+  </div>
+  <div class="card-stack">
+
+    <!-- 1 SACRA INFERMERIA -->
+    <div class="card" id="card-sacra">
+      <div class="card-img" style="height:700px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/La Valette long tables with red runner, alternating red and white chairs.jpg" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/La Valette long tables with red runner, alternating red and white chairs.jpg'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge restaurant">Gala · Opzione 1</div>
+          <div class="img-title">Sacra Infermeria — Mediterranean Conference Centre</div>
+          <div class="img-meta">L'antico ospedale dei Cavalieri · La Valletta</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Cenare sotto le volte della Sacra Infermeria, l'ospedale dei Cavalieri di San Giovanni — un ambiente monumentale per una serata indimenticabile.&nbsp;»</div>
+        <div class="incl-line">Location storica dei Cavalieri<span class='incl-sep'>·</span>Grande capacità<span class='incl-sep'>·</span>Cuore di La Valletta</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La location</div>
+          <div class="exp-narrative">Costruita dai Cavalieri nel XVI secolo, la <strong>Sacra Infermeria</strong> fu uno degli ospedali più rinomati d'Europa. Oggi è il <strong>Mediterranean Conference Centre</strong>: la sua maestosa Sala Grande, lunga oltre 150 metri, è una delle cornici più prestigiose di Malta per cene di gala di grandi dimensioni.</div>
+          <div class="exp-label">Dettagli</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Luogo</span><span class="efv">La Valletta</span></div>
+            <div class="efact"><span class="efi">🏛️</span><span class="efk">Venue</span><span class="efv">Mediterranean Conference Centre (MCC)</span></div>
+            <div class="efact"><span class="efi">👥</span><span class="efk">Capacità</span><span class="efv">Grande capacità, ideale per gruppi numerosi</span></div>
+            <div class="efact"><span class="efi">⚔️</span><span class="efk">Tema</span><span class="efv">Storia dei Cavalieri di San Giovanni</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 MDINA BY NIGHT -> XARA LODGE -->
+    <div class="card" id="card-mdina">
+      <div class="card-img" style="height:700px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/XARA LODGE.webp" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/XARA LODGE.webp'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge restaurant">Gala · Opzione 2</div>
+          <div class="img-title">Mdina by Night → Cena al Xara Lodge</div>
+          <div class="img-meta">La Città del Silenzio illuminata · cena nella campagna di Mdina</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Mdina di notte, quando i vicoli illuminati svelano l'anima medievale dell'isola — seguita da una cena al Xara Lodge.&nbsp;»</div>
+        <div class="incl-line">Passeggiata serale a Mdina<span class='incl-sep'>·</span>Cena al Xara Lodge<span class='incl-sep'>·</span>Atmosfera d'altri tempi</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">L'esperienza</div>
+          <div class="exp-narrative">La serata inizia con una passeggiata nella <strong>Mdina illuminata</strong>, l'antica capitale fortificata conosciuta come la "Città del Silenzio", i cui vicoli medievali di notte assumono un fascino unico. Segue la cena al <strong>Xara Lodge</strong>, elegante dimora di campagna nei pressi di Mdina — una location intima e suggestiva.</div>
+          <div class="exp-label">Dettagli</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Luogo</span><span class="efv">Mdina / Rabat</span></div>
+            <div class="efact"><span class="efi">🌙</span><span class="efk">Attività</span><span class="efv">Visita serale di Mdina illuminata</span></div>
+            <div class="efact"><span class="efi">🍽️</span><span class="efk">Cena</span><span class="efv">Xara Lodge — dimora di campagna</span></div>
+            <div class="efact"><span class="efi">🎭</span><span class="efk">Atmosfera</span><span class="efv">Medievale &amp; suggestiva</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 LIMESTONE HERITAGE -->
+    <div class="card" id="card-limestone">
+      <div class="card-img" style="height:700px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/limestone-heritage-main picture.jpg" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/limestone-heritage-main picture.jpg'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge restaurant">Gala · Opzione 3</div>
+          <div class="img-title">Limestone Heritage</div>
+          <div class="img-meta">Suggestiva ex cava trasformata in venue · Siġġiewi</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;Una location scenografica ricavata da un'antica cava di pietra calcarea — caratteristica e versatile per eventi di gruppo.&nbsp;»</div>
+        <div class="incl-line">Venue caratteristica<span class='incl-sep'>·</span>Ambientazione unica<span class='incl-sep'>·</span>Allestimento a tema</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La location</div>
+          <div class="exp-narrative">Il <strong>Limestone Heritage</strong> è un parco a tema ricavato da un'antica cava di pietra calcarea a Siġġiewi. Le sue pareti scolpite nella roccia e gli spazi all'aperto creano un'ambientazione scenografica e versatile, perfetta per una cena di gala dal carattere tipicamente maltese e facilmente personalizzabile con allestimenti a tema.</div>
+          <div class="exp-label">Dettagli</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Luogo</span><span class="efv">Siġġiewi</span></div>
+            <div class="efact"><span class="efi">⛏️</span><span class="efk">Venue</span><span class="efv">Ex cava di pietra calcarea</span></div>
+            <div class="efact"><span class="efi">🎪</span><span class="efk">Allestimento</span><span class="efv">Versatile, personalizzabile a tema</span></div>
+            <div class="efact"><span class="efi">👥</span><span class="efk">Gruppi</span><span class="efv">Adatto a eventi di gruppo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 ANTICA TESORERIA / CASINO MALTESE -->
+    <div class="card" id="card-tesoreria">
+      <div class="card-img" style="height:700px;">
+        <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/antica tesoreria, knights treasury, casino maltese.jpg" onerror="this.onerror=null;this.src='https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/antica tesoreria, knights treasury, casino maltese.jpg'">
+        <div class="img-grad"></div>
+        <div class="img-overlay">
+          <div class="ov-badge restaurant">Gala · Opzione 4</div>
+          <div class="img-title">Antica Tesoreria dei Cavalieri</div>
+          <div class="img-meta">Casino Maltese (Kasin Malti) · La Valletta</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="atm-line">«&nbsp;L'antica Tesoreria dell'Ordine, oggi Casino Maltese — saloni nobiliari nel cuore barocco di La Valletta.&nbsp;»</div>
+        <div class="incl-line">Saloni storici dei Cavalieri<span class='incl-sep'>·</span>Eleganza barocca<span class='incl-sep'>·</span>La Valletta</div>
+        <button class="expand-btn" onclick="toggleExpand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>Dettagli</button>
+      </div>
+      <div class="expanded">
+        <div class="exp-content">
+          <div class="exp-label">La location</div>
+          <div class="exp-narrative">Un tempo <strong>Tesoreria dell'Ordine di San Giovanni</strong>, l'edificio ospita oggi il prestigioso <strong>Casino Maltese</strong> (Kasin Malti), circolo privato nel cuore di La Valletta. I suoi saloni nobiliari, riccamente decorati, offrono una cornice intima ed elegante per una cena di gala raffinata.</div>
+          <div class="exp-label">Dettagli</div>
+          <div class="fact-list">
+            <div class="efact"><span class="efi">📍</span><span class="efk">Luogo</span><span class="efv">La Valletta</span></div>
+            <div class="efact"><span class="efi">🏛️</span><span class="efk">Venue</span><span class="efv">Casino Maltese — saloni nobiliari</span></div>
+            <div class="efact"><span class="efi">⚔️</span><span class="efk">Storia</span><span class="efv">Antica Tesoreria dell'Ordine</span></div>
+            <div class="efact"><span class="efi">✨</span><span class="efk">Stile</span><span class="efv">Eleganza barocca, ambiente intimo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KNIGHTS THEME NOTE -->
+  <div class="advice-box" style="margin-top:28px;">
+    <div class="advice-box-title">⚔️ Tema della serata — La Notte dei Cavalieri</div>
+    <div class="advice-box-text">La cena di gala è concepita attorno al <strong>tema dei Cavalieri di Malta</strong>, con allestimenti, scenografie e intrattenimento dedicati. <em>(Immagini a tema Cavalieri da inserire.)</em></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-top">
+      <div class="contact-overline">Il vostro referente dedicato</div>
+      <div class="contact-title">Siamo a vostra disposizione</div>
+      <div class="contact-sub">Per qualsiasi domanda su questo programma, sulle tariffe o sulle disponibilità, il nostro team è a vostra disposizione. Saremo lieti di adattare questo incentive ai desideri del vostro gruppo.</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-photo">
+        <img src="https://commalta.sharepoint.com/Shared%20Documents/Pictures/PHOTOS%20FOR%20CLAUDE/SITE%20VISIT%20LAST%20PAGE%20PHOTO.png" alt="Cheryl Ellul Bonici" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="profile-name">Cheryl Ellul Bonici</div>
+        <div class="profile-role">Coordinatrice DMC · Colours of Malta</div>
+        <div class="profile-sep"></div>
+        <div class="contact-links">
+          <a class="contact-link wa" href="https://wa.me/35699896387" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <div><span class="cl-label">WhatsApp</span><span class="cl-val">+356 9989 6387</span></div>
+          </a>
+          <a class="contact-link em" href="mailto:cheryl@commalta.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            <div><span class="cl-label">Email</span><span class="cl-val">cheryl@commalta.com</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="height:8px;background:var(--spectrum);"></div>
+<footer class="footer">
+  <div class="footer-wordmark">colours of malta</div>
+  <div class="footer-meta">Programma di una giornata · Sabato 30 gennaio o 6 febbraio 2027</div>
+  <div class="footer-meta">cheryl@commalta.com · +356 9989 6387</div>
+</footer>
+
+</div><!-- /tab-prog -->
+<!-- HOTELS TAB -->
+<div id="tab-hotels" class="page-tab">
+<div class="hotel-page">
+  <div class="hotel-page-inner">
+    <div class="hotel-pg-title">Opzioni hotel — Malta 2027</div>
+    <div class="hotel-pg-sub">Cinque hotel selezionati a Malta — dal 3★ superior al 4★, in diverse zone (Sliema, Mellieħa, St Paul's Bay). Tariffe per persona a notte. Tutti i regimi includono la prima colazione (BB), con possibilità di mezza pensione (HB) secondo l'hotel.</div>
+
+    <!-- ECO TAX -->
+    <div class="advice-box">
+      <div class="advice-box-title">⚠️ Contributo Ambientale — Dal 1° giugno 2026</div>
+      <div class="advice-box-text">Ai sensi della legge maltese, viene addebitato direttamente alla reception dell'hotel un <strong>contributo ambientale di €1,50 per persona a notte</strong>. L'imposta ha un tetto massimo di <strong>€15,00 per adulto</strong> a soggiorno. Non è incluso nelle tariffe seguenti ed è pagabile in struttura.</div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="comp-wrap">
+      <table class="comp">
+        <thead>
+          <tr>
+            <th class="comp-row-label"></th>
+            <th>Plaza Hotel<br><small style="font-weight:400;opacity:0.7;">Sliema</small></th>
+            <th>Maritim Hotel<br><small style="font-weight:400;opacity:0.7;">Mellieħa</small></th>
+            <th>San Antonio Hotel<br><small style="font-weight:400;opacity:0.7;">St Paul's Bay</small></th>
+            <th>Victoria Hotel<br><small style="font-weight:400;opacity:0.7;">Sliema</small></th>
+            <th>Santana Hotel<br><small style="font-weight:400;opacity:0.7;">St Paul's Bay</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="comp-row-label">Stelle</td>
+            <td>⭐⭐⭐<small> sup.</small></td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Località</td>
+            <td class="comp-val">Sliema</td>
+            <td class="comp-val">Mellieħa</td>
+            <td class="comp-val">St Paul's Bay</td>
+            <td class="comp-val">Sliema</td>
+            <td class="comp-val">St Paul's Bay</td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Regime</td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€22 HB opz.</span></td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€24 HB opz.</span></td>
+            <td class="comp-val">HB incluso<br><span style="font-size:10px;color:var(--stone);">bevande illimitate a cena</span></td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€34 HB con bevande</span></td>
+            <td class="comp-val">BB<br><span style="font-size:10px;color:var(--stone);">+€224 HB bevande illimitate</span></td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Camera singola/notte</td>
+            <td><div class="comp-rate">€90</div><div class="comp-note">Singola standard BB</div></td>
+            <td><div class="comp-rate">€86</div><div class="comp-note">Singola standard BB</div></td>
+            <td><div class="comp-rate">€122</div><div class="comp-note">Singola standard HB</div></td>
+            <td><div class="comp-rate">€150</div><div class="comp-note">Singola standard BB</div></td>
+            <td><div class="comp-rate">€86</div><div class="comp-note">Singola standard BB</div></td>
+          </tr>
+          <tr>
+            <td class="comp-row-label">Camera doppia/pers./notte</td>
+            <td><div class="comp-rate">€52</div><div class="comp-note">Doppia standard BB</div></td>
+            <td><div class="comp-rate">€54</div><div class="comp-note">Doppia standard BB</div></td>
+            <td><div class="comp-rate">€76</div><div class="comp-note">Doppia standard HB</div></td>
+            <td><div class="comp-rate">€88</div><div class="comp-note">Doppia standard BB</div></td>
+            <td><div class="comp-rate">€54</div><div class="comp-note">Doppia standard BB</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-overline" style="margin-bottom:10px;">Schede hotel</div>
+    <div class="section-title" style="margin-bottom:28px;">I 5 hotel in dettaglio</div>
+    <div class="hotel-cards-grid">
+
+      <!-- PLAZA -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Plaza.jpg" alt="Plaza Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐ Superior</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">Plaza Hotel</div>
+          <div class="h-card-loc">📍 Sliema — lungomare</div>
+          <div class="h-card-desc">Hotel 3 stelle superior, situato a Sliema a due passi dal lungomare e dai negozi. Ottimo rapporto qualità-prezzo per un soggiorno a Malta.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — singola</div><div class="h-rate-note">Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€90/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — doppia</div><div class="h-rate-note">Per persona · Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€52/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Supplemento cena (HB)</div><div class="h-rate-note">Bevande non incluse</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€22/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Prima colazione inclusa (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Posizione centrale a Sliema</div>
+            <div class="h-incl-item"><span class="cross">✗</span>Bevande a cena non incluse (HB opz.)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tariffe per persona a notte. +€1,50/pers./notte di contributo ambientale (tetto €15/adulto) pagabile alla reception. Disponibilità soggetta a conferma.</div></div>
+        </div>
+      </div>
+
+      <!-- MARITIM -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/Maritim 1.jpg" alt="Maritim Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">Maritim Hotel</div>
+          <div class="h-card-loc">📍 Mellieħa — nord di Malta</div>
+          <div class="h-card-desc">Hotel 4 stelle a Mellieħa, nel nord verde di Malta. Ambiente tranquillo e rilassante, vicino alle spiagge del nord. Eccellente rapporto qualità-prezzo per un 4 stelle.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — singola</div><div class="h-rate-note">Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€86/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — doppia</div><div class="h-rate-note">Per persona · Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€54/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Supplemento cena (HB)</div><div class="h-rate-note">Bevande non incluse</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€24/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Prima colazione inclusa (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Nord di Malta — contesto naturale</div>
+            <div class="h-incl-item"><span class="cross">✗</span>Bevande a cena non incluse (HB opz.)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tariffe per persona a notte. +€1,50/pers./notte di contributo ambientale (tetto €15/adulto) pagabile alla reception. Disponibilità soggetta a conferma.</div></div>
+        </div>
+      </div>
+
+      <!-- SAN ANTONIO -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/San Antonio.jpg" alt="The San Antonio Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">The San Antonio Hotel</div>
+          <div class="h-card-loc">📍 St Paul's Bay</div>
+          <div class="h-card-desc">Hotel 4 stelle a St Paul's Bay, con regime di mezza pensione completo che include bevande illimitate a cena — un reale valore aggiunto. Ideale per gruppi che cercano una formula tutto incluso la sera.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — singola</div><div class="h-rate-note">Mezza pensione (HB) inclusa</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€122/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — doppia</div><div class="h-rate-note">Per persona · Mezza pensione (HB) inclusa</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€76/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Bevande a cena</div><div class="h-rate-note">Bevande illimitate incluse a cena</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">✓ Incluse</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Mezza pensione (HB) inclusa</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Bevande illimitate a cena</div>
+            <div class="h-incl-item"><span class="tick">✓</span>St Paul's Bay — posizione comoda</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tariffe in regime HB (mezza pensione) con bevande illimitate a cena. +€1,50/pers./notte di contributo ambientale (tetto €15/adulto) pagabile alla reception. Disponibilità soggetta a conferma.</div></div>
+        </div>
+      </div>
+
+      <!-- VICTORIA -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/the Victoria.jpg" alt="The Victoria Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">The Victoria Hotel</div>
+          <div class="h-card-loc">📍 Sliema — lungomare</div>
+          <div class="h-card-desc">Elegante hotel 4 stelle a Sliema, situato sul lungomare. Il supplemento HB include le bevande a cena — un regime completo e confortevole per il vostro gruppo.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — singola</div><div class="h-rate-note">Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€150/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — doppia</div><div class="h-rate-note">Per persona · Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€88/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Supplemento cena (HB)</div><div class="h-rate-note">Bevande incluse a cena</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€34/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Prima colazione inclusa (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>Sliema — posizione centrale &amp; lungomare</div>
+            <div class="h-incl-item"><span class="tick">✓</span>HB con bevande incluse (+€34)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tariffe per persona a notte. Il supplemento HB include le bevande a cena. +€1,50/pers./notte di contributo ambientale (tetto €15/adulto). Disponibilità soggetta a conferma.</div></div>
+        </div>
+      </div>
+
+      <!-- SANTANA -->
+      <div class="h-card">
+        <div class="h-card-img">
+          <img src="https://commalta.sharepoint.com/Shared Documents/Pictures/PHOTOS FOR CLAUDE/the Santana.jpg" alt="The Santana Hotel" onerror="this.style.display='none'">
+          <div class="h-card-img-overlay"></div>
+          <div class="h-card-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-card-name">The Santana Hotel</div>
+          <div class="h-card-loc">📍 St Paul's Bay</div>
+          <div class="h-card-desc">Hotel 4 stelle a St Paul's Bay. Il supplemento HB con bevande illimitate (€224/pers.) prevede un regime molto completo per le cene — ideale per gruppi che desiderano la formula tutto incluso la sera.</div>
+          <div class="h-card-rates">
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — singola</div><div class="h-rate-note">Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€86/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Camera standard — doppia</div><div class="h-rate-note">Per persona · Prima colazione inclusa (BB)</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">€54/notte</div></div>
+            </div>
+            <div class="h-rate-row">
+              <div><div class="h-rate-label">Supplemento HB</div><div class="h-rate-note">Bevande illimitate incluse</div></div>
+              <div style="text-align:right;"><div class="h-rate-val">+€224/pers.</div></div>
+            </div>
+          </div>
+          <div class="h-card-incl">
+            <div class="h-incl-item"><span class="tick">✓</span>Prima colazione inclusa (BB)</div>
+            <div class="h-incl-item"><span class="tick">✓</span>St Paul's Bay — contesto costiero</div>
+            <div class="h-incl-item"><span class="tick">✓</span>HB con bevande illimitate (+€224)</div>
+          </div>
+          <div class="h-card-disclaimer"><div class="h-disc-text">Tariffe per persona a notte. Supplemento per la mezza pensione con bevande illimitate. +€1,50/pers./notte di contributo ambientale (tetto €15/adulto). Disponibilità soggetta a variazioni.</div></div>
+        </div>
+      </div>
+
+    </div><!-- /hotel-cards-grid -->
+
+    <!-- ECO TAX NOTE -->
+    <div style="background:var(--parchment);border-radius:var(--radius);padding:16px 20px;margin-bottom:32px;border:0.5px solid var(--border);">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">⚠️ Contributo Ambientale (Eco-tassa) — Legge Maltese</div>
+      <div style="font-size:12px;color:#5C4A38;line-height:1.65;">Dal 1° giugno 2026, viene addebitato direttamente alla reception dell'hotel un contributo ambientale di <strong>€1,50 per persona a notte</strong>, ai sensi della legge maltese. L'imposta ha un tetto massimo di <strong>€15,00 per adulto</strong> a soggiorno. Non è incluso nelle tariffe sopra indicate ed è pagabile in struttura.</div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div style="margin-top:20px;padding:20px 24px;background:var(--parchment);border-radius:10px;border:0.5px solid var(--border);">
+      <div style="font-family:var(--body);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:8px;">Note e condizioni</div>
+      <div style="font-family:var(--body);font-size:11px;color:#5C4A38;line-height:1.7;">Tutte le tariffe sono espresse in euro (€) per persona a notte. I prezzi sono indicativi e soggetti a variazione in base alla disponibilità al momento della conferma. In questa fase non è stata effettuata alcuna prenotazione. Le disponibilità sono gestite in ordine di arrivo. Colours of Malta cura tutte le prenotazioni e il coordinamento in loco.</div>
+    </div>
+
+  </div>
+</div>
+
+<div style="height:8px;background:var(--spectrum);"></div>
+<footer class="footer">
+  <div class="footer-wordmark">colours of malta</div>
+  <div class="footer-meta">Programma di una giornata · Sabato 30 gennaio o 6 febbraio 2027</div>
+  <div class="footer-meta">cheryl@commalta.com · +356 9989 6387</div>
+</footer>
+
+</div><!-- /tab-hotels -->
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="handleLbClick(event)">
+  <div class="lb-img-wrap">
+    <button class="lb-close" onclick="closeLightbox();event.stopPropagation()">✕</button>
+    <img id="lb-img" src="" alt="">
+  </div>
+  <div class="lb-caption" id="lb-caption"></div>
+  <div class="lb-nav-row">
+    <button class="lb-btn" id="lb-prev" onclick="lbNav(-1);event.stopPropagation()">← Ant</button>
+    <span class="lb-counter" id="lb-counter"></span>
+    <button class="lb-btn" id="lb-next" onclick="lbNav(1);event.stopPropagation()">Sig →</button>
+        
+  </div>
+</div>
+
+<script>
+function showTab(id){document.querySelectorAll('.page-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');var btn=document.querySelector('.nav-tab[onclick="showTab(\''+id+'\')"]');if(btn)btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+const NAV_OFFSET=66+8+46+20;
+const dayIds=['day-gozo','day-gala'];
+function updateActiveDay(){let current=dayIds[0];dayIds.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=NAV_OFFSET)current=id;});document.querySelectorAll('.day-link').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current);});}
+window.addEventListener('scroll',updateActiveDay,{passive:true});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-NAV_OFFSET,behavior:'smooth'});});});
+
+function toggleOvCoach(el){
+  el.classList.toggle('ov-open');
+  var sub = el.nextElementSibling;
+  if(sub && sub.classList.contains('ov-sub-list')){
+    sub.classList.toggle('ov-visible');
+  }
+}
+
+function toggleBanner(id){document.getElementById(id).classList.toggle('open');}
+function toggleExpand(btn){const card=btn.closest('.card, .option-pane');const panel=card?card.querySelector(':scope > .expanded'):null;if(!panel)return;const isOpen=panel.classList.contains('open');panel.classList.toggle('open',!isOpen);btn.classList.toggle('open',!isOpen);if(!isOpen){setTimeout(()=>{window.scrollTo({top:panel.getBoundingClientRect().top+window.scrollY-NAV_OFFSET-10,behavior:'smooth'});},60);}}
+function switchOpt(cardId,idx){const card=document.getElementById('card-'+cardId);card.querySelectorAll(':scope > .option-tabs > .option-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));card.querySelectorAll(':scope > .option-pane').forEach((p,i)=>p.classList.toggle('active',i===idx));}
+let lbImages=[],lbIndex=0;
+function openLightbox(images,idx,caption){lbImages=images;lbIndex=idx||0;document.getElementById('lb-caption').textContent=caption||'';document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';renderLb();}
+function renderLb(){const img=document.getElementById('lb-img');img.src=lbImages[lbIndex]||'';document.getElementById('lb-counter').textContent=lbImages.length>1?`${lbIndex+1} / ${lbImages.length}`:'';document.getElementById('lb-prev').style.visibility=lbIndex>0?'visible':'hidden';document.getElementById('lb-next').style.visibility=lbIndex<lbImages.length-1?'visible':'hidden';}
+function lbNav(dir){lbIndex=Math.max(0,Math.min(lbImages.length-1,lbIndex+dir));renderLb();}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function handleLbClick(e){if(e.target===document.getElementById('lightbox'))closeLightbox();}
+document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);});
+</script>
+</body>
+</html>
